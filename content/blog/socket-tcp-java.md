@@ -1,7 +1,7 @@
 
 ---
 title: "Java Socket Programming: Xây dựng Chat Server đơn giản với TCP"
-image: "/images/posts/java-socket.png"
+image: "images/posts/java-socket.png"
 date: 2025-12-23
 tags: ["Java", "Socket", "TCP", "Backend"]
 categories: ["Java", "Networking"]

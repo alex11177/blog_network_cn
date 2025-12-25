@@ -1,6 +1,6 @@
 ---
 title: "Fetch API: Cuộc cách mạng Ajax trong JavaScript hiện đại"
-image: "/images/posts/fetch-api.jpg"
+image: "images/posts/fetch-api.jpg"
 date: 2025-12-23
 tags: ["JavaScript", "Fetch", "API", "Frontend"]
 categories: ["JavaScript"]

@@ -10,7 +10,7 @@ enableGitInfo = false
 buildFuture = true
 buildDrafts = false
 
-relativeURLs = true
+relativeURLs = false
 canonifyURLs = false
 
 [params]

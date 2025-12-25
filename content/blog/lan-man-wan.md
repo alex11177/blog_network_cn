@@ -1,7 +1,7 @@
 
 ---
 title: "LAN, MAN, WAN: Phân loại mạng máy tính và Ứng dụng thực tế"
-image: "/images/posts/lan-man-wan.jpeg"
+image: "images/posts/lan-man-wan.jpeg"
 date: 2025-12-23
 tags: ["Mạng", "LAN", "WAN", "Network"]
 categories: ["Networking"]

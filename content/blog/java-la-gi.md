@@ -1,7 +1,7 @@
 
 ---
 title: "Java là gì? Tổng quan và lộ trình học cho người mới bắt đầu (2025)"
-image: "/images/posts/java.jpg"
+image: "images/posts/java.jpg"
 date: 2025-12-23
 tags: ["Java", "Backend", "Overview"]
 categories: ["Java"]
