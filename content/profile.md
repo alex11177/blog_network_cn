@@ -55,19 +55,19 @@ hidden: true
   <h2 class="section-heading">📜 Chứng chỉ</h2>
   <div class="certificates-list">
     <div class="cert-item">
-      <a href="/files/certificates/JavaScriptEssentials2Update20251223-31-lhy0wq.pdf" target="_blank" class="cert-link">
+      <a href="/blog_network_cn/files/certificates/JavaScriptEssentials2Update20251223-31-lhy0wq.pdf" target="_blank" class="cert-link">
         <span class="cert-icon">📄</span>
         <span class="cert-name">JavaScript Essentials 2 (Update 2025)</span>
       </a>
     </div>
     <div class="cert-item">
-      <a href="/files/certificates/JavaScriptEssentials1Update20251223-33-y9bk3c.pdf" target="_blank" class="cert-link">
+      <a href="/blog_network_cn/files/certificates/JavaScriptEssentials1Update20251223-33-y9bk3c.pdf" target="_blank" class="cert-link">
         <span class="cert-icon">📄</span>
         <span class="cert-name">JavaScript Essentials 1 (Update 2025)</span>
       </a>
     </div>
     <div class="cert-item">
-      <a href="/files/certificates/NetworkingBasicsUpdate20251223-31-frorrv.pdf" target="_blank" class="cert-link">
+      <a href="/blog_network_cn/files/certificates/NetworkingBasicsUpdate20251223-31-frorrv.pdf" target="_blank" class="cert-link">
         <span class="cert-icon">📄</span>
         <span class="cert-name">Networking Basics (Update 2025)</span>
       </a>
