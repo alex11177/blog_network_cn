@@ -1,0 +1,26 @@
+/* Make post-card cover images pop in front of the card. */
+.post-card {
+  overflow: visible;
+}
+
+.post-card-image-link {
+  position: relative;
+  z-index: 2;
+  margin: -20px 16px 0;
+  border-radius: 14px;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.45);
+}
+
+.post-card-image {
+  border-radius: 14px;
+}
+
+.post-card-content {
+  padding-top: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .post-card-image-link {
+    margin: -12px 12px 0;
+  }
+}
