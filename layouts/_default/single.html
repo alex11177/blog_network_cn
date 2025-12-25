@@ -6,7 +6,7 @@
       <div class="text-muted text-sm">{{ .Date.Format "02 Jan 2006" }} • {{ with .Params.tags }}{{ delimit . ", " }}{{
         end }}</div>
       {{ if .Params.image }}
-      <img src="{{ .Params.image }}" alt="{{ .Title }}" class="mt-6 w-full h-64 object-cover rounded-lg shadow-lg">
+      <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" class="mt-6 w-full h-64 object-cover rounded-lg shadow-lg">
       {{ end }}
     </header>
 
