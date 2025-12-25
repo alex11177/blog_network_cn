@@ -2,6 +2,7 @@ baseURL = "https://alex11177.github.io/blog_network_cn/"
 languageCode = "vi-vn"
 title = "Blog Lập Trình Mạng"
 theme = "PaperMod"
+publishDir = "public"
 
 description = "Blog cá nhân về lập trình mạng, Java và JavaScript"
 paginate = 10
@@ -10,7 +11,7 @@ enableGitInfo = false
 buildFuture = true
 buildDrafts = false
 
-relativeURLs = false
+relativeURLs = true
 canonifyURLs = false
 
 [params]
