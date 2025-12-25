@@ -1,0 +1,21 @@
+{{ define "main" }}
+<main class="main-container">
+  <div class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ if .Description }}
+    <p class="page-description">{{ .Description }}</p>
+    {{ end }}
+  </div>
+
+  <div class="posts-grid">
+    {{ $paginator := .Paginate (where .Pages "Type" "blog") }}
+    {{ range $paginator.Pages }}
+    {{ partial "card.html" . }}
+    {{ end }}
+  </div>
+
+  <div class="pagination-container">
+    {{ template "partials/pagination.html" . }}
+  </div>
+</main>
+{{ end }}

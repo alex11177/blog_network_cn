@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Fullstack on Blog Lập Trình Mạng</title>
+    <link>http://localhost:1313/tags/fullstack/</link>
+    <description>Recent content in Fullstack on Blog Lập Trình Mạng</description>
+    <generator>Hugo -- 0.153.0</generator>
+    <language>vi-vn</language>
+    <lastBuildDate>Tue, 23 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/fullstack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript là gì? Từ Sripting đơn giản đến bá chủ Full-stack (2025)</title>
+      <link>http://localhost:1313/blog/javascript-la-gi/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/javascript-la-gi/</guid>
+      <description>JavaScript đã vượt xa khỏi trình duyệt để trở thành ngôn ngữ phổ biến nhất thế giới. Bài viết này phân tích sự trỗi dậy của JS, từ thao tác DOM đơn giản đến Node.js và hệ sinh thái hiện đại.</description>
+    </item>
+  </channel>
+</rss>

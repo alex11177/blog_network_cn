@@ -1,0 +1,29 @@
+{{ $hidden := .Params.hidden }}
+{{ if not $hidden }}
+<article class="post-card">
+    {{ if .Params.image }}
+    <a href="{{ .Permalink }}" class="post-card-image-link">
+        <img class="post-card-image" src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+    </a>
+    {{ end }}
+    <div class="post-card-content">
+        <header class="post-card-header">
+            <div class="post-meta-header">
+                {{ with .Params.categories }}
+                {{ range first 1 . }}
+                <span class="post-category">{{ . }}</span>
+                {{ end }}
+                {{ end }}
+                <span class="post-date">{{ .Date.Format "02 Jan 2006" }}</span>
+            </div>
+            <h3 class="post-card-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+        </header>
+        <div class="post-excerpt line-clamp-3">
+            {{ .Summary | plainify | truncate 150 }}
+        </div>
+        <footer class="post-card-footer">
+            <a href="{{ .Permalink }}" class="read-more-link">Đọc tiếp →</a>
+        </footer>
+    </div>
+</article>
+{{ end }}

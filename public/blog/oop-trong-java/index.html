@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Lập trình hướng đối tượng (OOP) trong Java: 4 trụ cột và Best Practices | Blog Lập Trình Mạng</title>
+<meta name="keywords" content="Java, OOP, Design Patterns">
+<meta name="description" content="OOP không chỉ là lý thuyết sgk. Bài viết này đi sâu vào 4 tính chất (Encapsulation, Inheritance, Polymorphism, Abstraction) kèm theo các quy tắc thiết kế (SOLID) thực tế trong dự án Java lớn.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blog/oop-trong-java/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" integrity="sha256-/VVmxSauSKravZUHmKLcNWhTZAFWDq5cqsN2WkKp57U=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/oop-trong-java/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+<script>
+	tailwind = { config: {
+		darkMode: 'class',
+		theme: {
+			extend: {
+				colors: {
+					accent: '#60a5fa',
+					surface: '#0b1220',
+					page: '#0f1724',
+					muted: '#94a3b8'
+				}
+			}
+		}
+	}}
+	
+	document.documentElement.classList.add('dark')
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+
+
+<link rel="stylesheet" href="/css/custom.css">
+
+</head>
+<body id="top">
+    
+<header class="bg-surface text-white">
+  <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-accent rounded-md flex items-center justify-center shadow-md">
+        <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="text-xl font-semibold leading-tight">Blog Lập Trình Mạng</div>
+        <div class="text-sm text-muted"></div>
+      </div>
+    </a>
+
+    <nav class="hidden md:flex items-center">
+      
+        <a href="/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Home</a>
+      
+        <a href="/blog/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Blog</a>
+      
+        <a href="/profile/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Profile</a>
+      
+    </nav>
+
+    <div class="md:hidden">
+      <button class="p-2 rounded bg-transparent text-muted focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</header>
+<main class="main">
+<main class="max-w-3xl mx-auto px-4 py-12">
+  <article class="prose prose-invert lg:prose-lg">
+    <header class="mb-6">
+      <h1 class="text-3xl font-extrabold text-white mb-2">Lập trình hướng đối tượng (OOP) trong Java: 4 trụ cột và Best Practices</h1>
+      <div class="text-muted text-sm">23 Dec 2025 • Java, OOP, Design Patterns</div>
+      
+      <img src="/images/posts/oop-best-practices.webp" alt="Lập trình hướng đối tượng (OOP) trong Java: 4 trụ cột và Best Practices" class="mt-6 w-full h-64 object-cover rounded-lg shadow-lg">
+      
+    </header>
+
+    <div class="post-content text-gray-200">
+      <h2 id="mở-đầu-tại-sao-oop-lại-quan-trọng">Mở đầu: Tại sao OOP lại quan trọng?</h2>
+<p>Object-Oriented Programming (OOP) là mô hình lập trình dựa trên khái niệm &ldquo;Object&rdquo; (đối tượng) chứa dữ liệu (attributes) và mã (methods). Java là ngôn ngữ OOP thuần túy (gần như), nên việc hiểu sâu OOP là điều kiện tiên quyết để viết code Java tốt (Clean Code).</p>
+<h2 id="1-encapsulation-tính-đóng-gói">1. Encapsulation (Tính đóng gói)</h2>
+<p><strong>Định nghĩa:</strong> Giấu thông tin và chi tiết cài đặt nội bộ, chỉ cung cấp interface để tương tác bên ngoài.</p>
+<p><strong>Tại sao cần?</strong> Bảo vệ dữ liệu khỏi sự truy cập tùy tiện.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BankAccount</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span> balance; <span style="color:#75715e">// Dữ liệu được giấu đi (private)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">deposit</span>(<span style="color:#66d9ef">double</span> amount) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (amount <span style="color:#f92672">&gt;</span> 0) {
+</span></span><span style="display:flex;"><span>            balance <span style="color:#f92672">+=</span> amount; <span style="color:#75715e">// Chỉ thay đổi qua method kiểm soát</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">getBalance</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> balance; <span style="color:#75715e">// Getter an toàn</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p><strong>Best Practice:</strong> Luôn để thuộc tính là <code>private</code>. Chỉ dùng <code>public</code> cho hằng số (<code>public static final</code>).</p>
+</blockquote>
+<h2 id="2-inheritance-tính-kế-thừa">2. Inheritance (Tính kế thừa)</h2>
+<p><strong>Định nghĩa:</strong> Cho phép một class con (subclass) kế thừa các thuộc tính và phương thức của class cha (superclass).</p>
+<p><strong>Cú pháp:</strong> <code>extends</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Class cha</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Vehicle</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> String brand <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Ford&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">honk</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Tuut, tuut!&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Class con</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Car</span> <span style="color:#66d9ef">extends</span> Vehicle {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String modelName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Mustang&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p><strong>Cảnh báo:</strong> Hãy cẩn thận với kế thừa sâu (Deep Inheritance Hierarchy). Về sau, người ta ưa chuộng &ldquo;Composition over Inheritance&rdquo; (Sử dụng thành phần thay vì kế thừa) để giảm sự phụ thuộc chặt chẽ giữa các lớp.</p>
+</blockquote>
+<h2 id="3-polymorphism-tính-đa-hình">3. Polymorphism (Tính đa hình)</h2>
+<p><strong>Định nghĩa:</strong> Một hành động có thể được thực hiện theo nhiều cách khác nhau.</p>
+<p>Có 2 loại đa hình:</p>
+<ol>
+<li><strong>Compile-time (Overloading):</strong> Cùng tên hàm nhưng khác tham số.</li>
+<li><strong>Runtime (Overriding):</strong> Class con định nghĩa lại method của class cha.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">animalSound</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;The animal makes a sound&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Pig</span> <span style="color:#66d9ef">extends</span> Animal {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">animalSound</span>() { <span style="color:#75715e">// Runtime Polymorphism</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;The pig says: wee wee&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="4-abstraction-tính-trừu-tượng">4. Abstraction (Tính trừu tượng)</h2>
+<p><strong>Định nghĩa:</strong> Ẩn các chi tiết cài đặt phức tạp và chỉ hiển thị các chức năng thiết yếu.</p>
+<p>Trong Java, chúng ta dùng <code>abstract class</code> và <code>interface</code>.</p>
+<h3 id="interface-vs-abstract-class-phỏng-vấn-hay-hỏi">Interface vs Abstract Class (Phỏng vấn hay hỏi)</h3>
+<ul>
+<li><strong>Interface:</strong> Dùng để định nghĩa <strong>hành vi</strong> (Can-Do). Một class có thể implement nhiều interface. (Ví dụ: <code>Flyable</code>, <code>Runnable</code>).</li>
+<li><strong>Abstract Class:</strong> Dùng để định nghĩa <strong>bản chất</strong> (Is-A). Một class chỉ có thể extends một abstract class. (Ví dụ: <code>Animal</code>, <code>Person</code>).</li>
+</ul>
+<h2 id="kết-luận-từ-oop-đến-solid">Kết luận: Từ OOP đến SOLID</h2>
+<p>Hiểu 4 tính chất trên là chưa đủ. Để trở thành Senior, bạn cần áp dụng nguyên lý <strong>SOLID</strong>:</p>
+<ul>
+<li><strong>S</strong>ingle Responsibility Principle</li>
+<li><strong>O</strong>pen/Closed Principle</li>
+<li><strong>L</strong>iskov Substitution Principle</li>
+<li><strong>I</strong>nterface Segregation Principle</li>
+<li><strong>D</strong>ependency Inversion Principle</li>
+</ul>
+<p>Chúng ta sẽ bàn kỹ về SOLID trong một bài viết chuyên sâu khác. Nhưng hãy nhớ: Code Java tốt là code dễ đọc, dễ bảo trì và mở rộng được.</p>
+
+    </div>
+
+    <footer class="mt-12 text-muted text-sm">
+      <hr class="border-neutral-700 mb-4" />
+      <div>Đã đọc: 3 phút • Thẻ: Java, Core</div>
+    </footer>
+  </article>
+</main>
+
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Blog Lập Trình Mạng</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a><script>
+    const currentUrl = window.location.pathname;
+    document.querySelectorAll('.menu li a').forEach(link => {
+        if (link.getAttribute('href') === currentUrl || (link.getAttribute('href') !== '/' && currentUrl.startsWith(link.getAttribute('href')))) {
+            link.closest('li').classList.add('active');
+        }
+    });
+</script>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

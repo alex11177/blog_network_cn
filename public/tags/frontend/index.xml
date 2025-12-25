@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Frontend on Blog Lập Trình Mạng</title>
+    <link>http://localhost:1313/tags/frontend/</link>
+    <description>Recent content in Frontend on Blog Lập Trình Mạng</description>
+    <generator>Hugo -- 0.153.0</generator>
+    <language>vi-vn</language>
+    <lastBuildDate>Tue, 23 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/frontend/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)</title>
+      <link>http://localhost:1313/blog/dom-javascript/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/dom-javascript/</guid>
+      <description>Trước khi dùng React hay Vue, bạn phải hiểu DOM. Bài viết này hướng dẫn cách thao tác phần tử HTML, lắng nghe sự kiện và tối ưu hiệu suất render mà không cần jQuery.</description>
+    </item>
+    <item>
+      <title>Fetch API: Cuộc cách mạng Ajax trong JavaScript hiện đại</title>
+      <link>http://localhost:1313/blog/fetch-api/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/fetch-api/</guid>
+      <description>Quên XMLHttpRequest đi. Fetch API là tiêu chuẩn mới để gọi API tỏng trình duyệt, kết hợp hoàn hảo với Promise và Async/Await. Hướng dẫn toàn tập từ GET, POST đến xử lý lỗi.</description>
+    </item>
+    <item>
+      <title>JavaScript là gì? Từ Sripting đơn giản đến bá chủ Full-stack (2025)</title>
+      <link>http://localhost:1313/blog/javascript-la-gi/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/javascript-la-gi/</guid>
+      <description>JavaScript đã vượt xa khỏi trình duyệt để trở thành ngôn ngữ phổ biến nhất thế giới. Bài viết này phân tích sự trỗi dậy của JS, từ thao tác DOM đơn giản đến Node.js và hệ sinh thái hiện đại.</description>
+    </item>
+  </channel>
+</rss>

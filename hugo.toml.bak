@@ -1,0 +1,21 @@
+baseURL = "https://yourusername.github.io/"
+languageCode = "vi-vn"
+title = "Blog Lập Trình Mạng"
+theme = "PaperMod"
+
+[menu]
+
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "Blog"
+url = "/blog/"
+weight = 2
+
+[[menu.main]]
+name = "Profile"
+url = "/profile/"
+weight = 3

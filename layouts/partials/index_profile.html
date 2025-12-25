@@ -1,0 +1,52 @@
+{{/* Modern Home Page - Hero Section + Latest Posts Grid */}}
+
+{{/* Hero Section */}}
+<section class="hero-section">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1 class="hero-title">Blog Lập Trình Mạng</h1>
+      <p class="hero-subtitle">
+        Khám phá kiến thức về Java, JavaScript, và Mạng máy tính<br />
+        dành cho sinh viên CNTT
+      </p>
+      <div class="hero-cta">
+        <a href="/blog/" class="btn btn-primary">Xem bài viết</a>
+        <a href="/profile/" class="btn btn-secondary">Về tôi</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* Latest Posts Section */}}
+<section class="latest-posts-section">
+  <div class="posts-container">
+    <h2 class="section-title">Bài viết mới nhất</h2>
+
+    <div class="posts-grid">
+      {{ range first 6 (where .Site.RegularPages "Section" "blog") }}
+      <article class="post-card">
+        <div class="post-card-content">
+          <div class="post-meta-header">
+            <time class="post-date">{{ .Date.Format "02 Jan 2006" }}</time>
+            {{ with .Params.tags }}
+            {{ if gt (len .) 0 }}
+            <span class="post-tag">{{ index . 0 }}</span>
+            {{ end }}
+            {{ end }}
+          </div>
+
+          <h3 class="post-card-title">
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+          </h3>
+
+          <p class="post-excerpt">{{ .Summary | truncate 120 }}</p>
+
+          <a href="{{ .Permalink }}" class="read-more-link">
+            Đọc thêm <span class="arrow">→</span>
+          </a>
+        </div>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>

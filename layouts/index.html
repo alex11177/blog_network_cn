@@ -1,0 +1,25 @@
+{{ define "main" }}
+<section class="hero-section">
+    <div class="container hero-container">
+        <h1 class="hero-title">Lập Trình Mạng</h1>
+        <p class="hero-subtitle">Chia sẻ kiến thức về lập trình mạng, backend, Java và JavaScript chuyên sâu</p>
+        <div class="hero-cta">
+            <a href="#latest-posts" class="btn-primary">Khám phá ngay</a>
+        </div>
+    </div>
+</section>
+
+<main id="latest-posts" class="latest-posts-section">
+    <div class="container">
+        <h2 class="section-title">Bài viết mới nhất</h2>
+        <div class="posts-grid">
+            {{ $posts := where .Site.RegularPages "Type" "blog" }}
+            {{ range first 12 $posts }}
+            <div class="grid-item">
+                {{ partial "card.html" . }}
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</main>
+{{ end }}

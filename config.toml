@@ -1,0 +1,41 @@
+baseURL = "https://yourusername.github.io/"
+languageCode = "vi-vn"
+title = "Blog Lập Trình Mạng"
+theme = "PaperMod"
+
+description = "Blog cá nhân về lập trình mạng, Java và JavaScript"
+paginate = 10
+mainSections = ["blog"]
+enableGitInfo = false
+buildFuture = true
+buildDrafts = false
+
+[params]
+  author = "Vương Trung Phiên"
+  showReadingTime = true
+  showShareButtons = true
+  showToc = true
+  search = true
+  searchEngine = "fusejs"
+  theme = "auto"
+  dateFormat = "02 Jan 2006"
+
+[params.assets]
+  customCSS = ["css/custom.css", "css/home.css"]
+
+[menu]
+
+[[menu.main]]
+name = "Trang chủ"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "Blog"
+url = "/blog/"
+weight = 2
+
+[[menu.main]]
+name = "Profile"
+url = "/profile/"
+weight = 3

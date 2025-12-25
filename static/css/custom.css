@@ -1,0 +1,1757 @@
+/* ============================================
+   BLOG TYPOGRAPHY & UI ENHANCEMENT
+   Dark Mode Optimized - High Contrast - Vietnamese Friendly
+   ============================================ */
+
+/* ============================================
+   1. CSS VARIABLES & ROOT CONFIGURATION
+   ============================================ */
+:root {
+  /* Colors - Modern High-Contrast Dark Mode (Slate 950/900) */
+  --bg-primary: #020617;
+  /* Slate 950 */
+  --bg-secondary: #0f172a;
+  /* Slate 900 */
+  --bg-card: #0f172a;
+  /* Slate 900 */
+
+  --text-primary: #f8fafc;
+  /* Slate 50 */
+  --text-secondary: #94a3b8;
+  /* Slate 400 */
+  --text-muted: #64748b;
+  /* Slate 500 */
+
+  --accent-primary: #6366f1;
+  /* Indigo 500 */
+  --accent-secondary: #818cf8;
+  /* Indigo 400 */
+  --accent-subtle: rgba(99, 102, 241, 0.1);
+
+  --border-color: rgba(255, 255, 255, 0.05);
+
+  /* Active Navigation State */
+  .menu li.active a {
+    color: var(--accent-primary) !important;
+    position: relative;
+  }
+
+  .menu li.active a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-primary);
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(99, 102, 241, 0.5);
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    overflow: hidden;
+  }
+
+  /* Code Colors - Dark Optimized */
+  --code-bg: #1e293b;
+  --code-text: #f8fafc;
+  --code-inline-bg: rgba(99, 102, 241, 0.1);
+  --code-inline-text: #818cf8;
+  --code-border: rgba(99, 102, 241, 0.2);
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 4rem;
+
+  /* Typography */
+  --font-base: 'Inter',
+  -apple-system,
+  system-ui,
+  sans-serif;
+  --font-mono: 'Fira Code',
+  monospace;
+
+  --font-size-base: 17px;
+  --line-height-base: 1.85;
+  --line-height-heading: 1.3;
+}
+
+/* ============================================
+   2. BASE TYPOGRAPHY
+   ============================================ */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Force high-contrast dark mode for PaperMod */
+:root {
+  --theme: #020617;
+  --entry: #0f172a;
+  --primary: #f8fafc;
+  --secondary: #94a3b8;
+  --tertiary: #64748b;
+  --content: #e2e8f0;
+  --code-block-bg: #1e293b;
+  --code-bg: #1e293b;
+  --border: rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================
+   3. HEADINGS - R√ï R√ÄNG & N·ªîI B·∫¨T
+   ============================================ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.02em;
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: var(--spacing-lg);
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  border-bottom: 2px solid var(--border-bright);
+  padding-bottom: var(--spacing-sm);
+  margin-top: var(--spacing-2xl);
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Post title - Extra prominent */
+.post-title {
+  font-size: 3rem !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.04em !important;
+  margin-bottom: var(--spacing-xl) !important;
+  text-align: center;
+}
+
+/* ============================================
+   4. PARAGRAPH & TEXT - D·ªÑ ƒê·ªåC
+   ============================================ */
+p {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Post content - Higher contrast */
+.post-content p,
+.post-content li {
+  color: var(--text-secondary) !important;
+  font-size: 17px !important;
+  line-height: 1.85 !important;
+}
+
+strong,
+b {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+em,
+i {
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+/* ============================================
+   5. LINKS
+   ============================================ */
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-secondary);
+  text-decoration: underline;
+}
+
+.post-content a {
+  color: var(--accent-primary);
+  font-weight: 600;
+  border-bottom: 1px solid rgba(96, 165, 250, 0.3);
+}
+
+.post-content a:hover {
+  border-bottom-color: var(--accent-primary);
+}
+
+/* ============================================
+   6. LISTS
+   ============================================ */
+ul,
+ol {
+  margin-bottom: var(--spacing-lg);
+  padding-left: var(--spacing-xl);
+}
+
+li {
+  margin-bottom: var(--spacing-sm);
+  line-height: var(--line-height-base);
+}
+
+ul li::marker {
+  color: var(--accent-primary);
+}
+
+ol li::marker {
+  color: var(--accent-primary);
+  font-weight: 700;
+}
+
+/* ============================================
+   7. CODE BLOCKS - R√ï R√ÄNG & PH√ÇN BI·ªÜT
+   ============================================ */
+
+/* Inline code - High contrast */
+code {
+  background-color: var(--code-inline-bg) !important;
+  color: var(--code-inline-text) !important;
+  padding: 0.25em 0.5em !important;
+  border-radius: 6px !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.9em !important;
+  font-weight: 600 !important;
+  border: 1px solid var(--code-border) !important;
+  margin: 0 0.15em;
+}
+
+/* Code blocks */
+pre {
+  background-color: var(--code-bg) !important;
+  border: 1px solid rgba(79, 192, 255, 0.1) !important;
+  border-radius: 10px !important;
+  padding: var(--spacing-lg) !important;
+  margin: var(--spacing-lg) 0 !important;
+  overflow-x: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+pre code {
+  background: transparent !important;
+  color: var(--code-text) !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: 15px !important;
+  line-height: 1.75 !important;
+  margin: 0;
+  display: block;
+}
+
+/* Syntax highlighting override for better visibility */
+.highlight,
+div.highlight {
+  background: var(--code-bg) !important;
+  border-radius: 10px;
+}
+
+.chroma {
+  background-color: var(--code-bg) !important;
+}
+
+/* ============================================
+   8. BLOCKQUOTES
+   ============================================ */
+blockquote {
+  border-left: 4px solid var(--accent-primary);
+  background: rgba(96, 165, 250, 0.05);
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
+  border-radius: 0 8px 8px 0;
+}
+
+blockquote p {
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ============================================
+   09. POST CARDS & ENTRIES (STANDARDIZED)
+   ============================================ */
+.post-card-header {
+  margin-bottom: 1rem;
+}
+
+.post-meta-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.post-tag {
+  color: var(--accent-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  background: rgba(99, 102, 241, 0.1);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+.post-card-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.post-card-title a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.post-card-title a:hover {
+  color: var(--accent-primary);
+}
+
+.post-excerpt {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+  /* Pushes footer down */
+}
+
+.post-card-footer {
+  margin-top: auto;
+}
+
+.read-more-link {
+  display: inline-flex;
+  font-weight: 700;
+  color: var(--accent-primary);
+  text-decoration: none;
+  align-items: center;
+  gap: 0.25rem;
+  transition: gap 0.2s;
+}
+
+.read-more-link:hover {
+  gap: 0.5rem;
+  color: #ffffff;
+}
+
+/* Legacy Support (Removing Old Styles if needed) */
+.post-entry {
+  /* Inherit previous styles but ensure they don't conflict */
+  background: var(--bg-card) !important;
+  border: 1px solid rgba(226, 232, 240, 0.6) !important;
+  border-radius: 16px !important;
+  padding: var(--spacing-xl) !important;
+  margin-bottom: var(--spacing-xl) !important;
+  transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1) !important;
+  /* Volumetric Shadow */
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.02),
+    0 2px 4px -1px rgba(0, 0, 0, 0.01),
+    0 10px 15px -3px rgba(0, 0, 0, 0.03) !important;
+}
+
+.post-entry:hover {
+  border-color: var(--accent-primary) !important;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.08),
+    0 10px 10px -5px rgba(79, 70, 229, 0.04) !important;
+  transform: translateY(-8px) scale(1.01) !important;
+}
+
+.entry-header h2 {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  margin: 0 0 var(--spacing-sm) 0 !important;
+  border: none !important;
+}
+
+.entry-content {
+  color: var(--text-secondary) !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  margin: var(--spacing-md) 0 !important;
+}
+
+.entry-footer,
+.post-meta {
+  color: var(--text-muted) !important;
+  font-size: 14px !important;
+  margin-top: var(--spacing-md);
+}
+
+/* ============================================
+   10. MAIN CONTENT AREA - SINGLE COLUMN FOCUS
+   ============================================ */
+.main {
+  background-color: var(--bg-primary);
+  max-width: 800px !important;
+  margin: 0 auto !important;
+  padding: var(--spacing-2xl) var(--spacing-md) !important;
+}
+
+main,
+.site-main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-2xl) var(--spacing-md);
+}
+
+/* ============================================
+   11. HEADER & NAVIGATION (DARK MODE GLASS)
+   ============================================ */
+.nav {
+  background: rgba(2, 6, 23, 0.8) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.75rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header,
+.site-header,
+#nav-header {
+  background: rgba(2, 6, 23, 0.8) !important;
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 0;
+}
+
+/* Menu links visibility fix */
+.menu a,
+.nav a,
+header a {
+  color: var(--text-secondary) !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  padding: 0.5rem 1rem !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease;
+  display: inline-block;
+}
+
+.menu a:hover,
+.nav a:hover,
+header a:hover {
+  color: var(--accent-primary) !important;
+}
+
+/* Active/Current link */
+.menu .active,
+.nav .current,
+header .current-menu-item a {
+  color: var(--accent-primary) !important;
+}
+
+/* ============================================
+   12. TABLES
+   ============================================ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--spacing-lg) 0;
+  background: var(--bg-card);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th {
+  background: rgba(96, 165, 250, 0.1);
+  color: var(--text-primary);
+  font-weight: 700;
+  text-align: left;
+  padding: var(--spacing-md);
+  border-bottom: 2px solid var(--border-bright);
+}
+
+td {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover {
+  background: rgba(96, 165, 250, 0.03);
+}
+
+/* ============================================
+   04. TYPOGRAPHY & READABILITY
+   ============================================ */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.7;
+  /* Increased for better reading comfort */
+  font-size: 16px;
+  /* Base size */
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+/* Optimize Code Readability */
+code {
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 0.9em;
+}
+
+/* ============================================
+   13. IMAGES
+   ============================================ */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: var(--spacing-lg) 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   14. HORIZONTAL RULE
+   ============================================ */
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--border-bright), transparent);
+  margin: var(--spacing-2xl) 0;
+}
+
+/* ============================================
+   15. POST METADATA
+   ============================================ */
+.post-meta time {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ============================================
+   16. FOOTER
+   ============================================ */
+footer,
+.site-footer {
+  background-color: var(--bg-secondary);
+  color: var(--text-muted);
+  text-align: center;
+  padding: var(--spacing-xl) var(--spacing-md);
+  margin-top: var(--spacing-2xl);
+  border-top: 1px solid var(--border-color);
+}
+
+/* ============================================
+   17. TAGS
+   ============================================ */
+.post-tags a {
+  background: rgba(96, 165, 250, 0.08) !important;
+  color: var(--accent-primary) !important;
+  border: 1px solid rgba(96, 165, 250, 0.2) !important;
+  padding: 0.4em 0.9em !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease;
+}
+
+.post-tags a:hover {
+  background: rgba(96, 165, 250, 0.15) !important;
+  border-color: var(--accent-primary) !important;
+}
+
+/* ============================================
+   18. RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 768px) {
+  :root {
+    --font-size-base: 16px;
+    --spacing-xl: 1.25rem;
+    --spacing-2xl: 2rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  .post-title {
+    font-size: 2rem !important;
+  }
+
+  .main,
+  main,
+  .site-main {
+    padding: var(--spacing-md) !important;
+  }
+
+  .post-entry {
+    padding: var(--spacing-lg) !important;
+  }
+}
+
+/* ============================================
+   19. UTILITY OVERRIDES
+   ============================================ */
+
+/* Ensure all content maintains readability */
+.post-content {
+  color: var(--text-secondary) !important;
+}
+
+/* TOC styling */
+.toc {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  padding: var(--spacing-lg) !important;
+  border-radius: 10px;
+}
+
+.toc a {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.toc a:hover {
+  color: var(--accent-primary);
+}
+
+/* Pagination */
+.pagination a,
+.paginav a {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+}
+
+.pagination a:hover,
+.paginav a:hover {
+  background: var(--accent-primary) !important;
+  color: #ffffff !important;
+  border-color: var(--accent-primary) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 15px rgba(79, 70, 229, 0.2) !important;
+}
+
+/* ============================================
+   20. ACCESSIBILITY & VIETNAMESE SUPPORT
+   ============================================ */
+
+/* Ensure Vietnamese diacritics render properly */
+body,
+p,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-feature-settings: "liga" 1, "calt" 1;
+  text-rendering: optimizeLegibility;
+}
+
+/* Focus states for accessibility */
+a:focus,
+button:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(96, 165, 250, 0.3);
+  color: var(--text-primary);
+}
+
+::-moz-selection {
+  background-color: rgba(96, 165, 250, 0.3);
+  color: var(--text-primary);
+}
+
+/* ============================================
+   21. PROFILE PAGE - MODERN PORTFOLIO STYLE
+   ============================================ */
+
+.profile-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) 0;
+}
+
+/* Profile Header - Avatar + Name */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-2xl);
+  padding: var(--spacing-xl);
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Avatar */
+.profile-avatar {
+  flex-shrink: 0;
+}
+
+.avatar-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ffffff;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.avatar-img:hover {
+  transform: scale(1.05);
+}
+
+/* 
+.avatar-placeholder {
+  ... removed placeholder styles ...
+} 
+*/
+
+/* Profile Intro */
+.profile-intro {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 2.5rem !important;
+  font-weight: 800 !important;
+  color: #111827 !important;
+  margin: 0 0 var(--spacing-sm) 0 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em;
+}
+
+.profile-title {
+  font-size: 1.1rem;
+  color: var(--accent-primary);
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+/* Profile Sections */
+.profile-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 3rem !important;
+  margin-bottom: var(--spacing-xl);
+  transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.profile-section:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: var(--accent-primary);
+}
+
+/* Section Headings */
+.section-heading {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  margin: 0 0 var(--spacing-lg) 0 !important;
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--border-bright) !important;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
+  background: rgba(96, 165, 250, 0.03);
+  border-radius: 8px;
+  border: 1px solid rgba(96, 165, 250, 0.1);
+}
+
+.info-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.info-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Skills Container */
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Skill Badges */
+.skill-badge {
+  display: inline-block;
+  padding: 0.6rem 1.75rem;
+  background: rgba(99, 102, 241, 0.08);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+}
+
+.skill-badge:hover {
+  background: var(--accent-primary);
+  color: #ffffff;
+  border-color: var(--accent-primary);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+/* Career Goal */
+.career-goal {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin: 0;
+  padding: var(--spacing-md);
+  background: rgba(96, 165, 250, 0.03);
+  border-radius: 8px;
+  border-left: 4px solid var(--accent-primary);
+}
+
+/* Responsive Design for Profile */
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-lg);
+  }
+
+  .avatar-placeholder {
+    width: 100px;
+    height: 100px;
+    font-size: 2rem;
+  }
+
+  .profile-name {
+    font-size: 2rem !important;
+  }
+
+  .profile-title {
+    font-size: 1rem;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .skills-container {
+    justify-content: center;
+  }
+
+  .section-heading {
+    font-size: 1.3rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-container {
+    padding: var(--spacing-md) 0;
+  }
+
+  .profile-header,
+  .profile-section {
+    padding: var(--spacing-lg);
+  }
+
+  .skill-badge {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* ============================================
+   22. CERTIFICATES STYLING
+   ============================================ */
+
+.certificates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cert-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 1.5rem !important;
+}
+
+.cert-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--accent-primary);
+  transform: translateY(-4px) translateX(6px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.cert-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  color: var(--text-primary) !important;
+  text-decoration: none !important;
+  font-weight: 600;
+}
+
+.cert-icon {
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+.cert-name {
+  font-size: 1.05rem;
+}
+
+/* Custom Scrollbar for Dark Mode */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.2);
+  border-radius: 10px;
+  border: 2px solid #020617;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
+}
+
+/* Post Card - Redesigned Phase 8 */
+.post-card {
+  background: #161e2d;
+  /* Requested Dark BG */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  /* For image zooming */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  border-color: rgba(34, 211, 238, 0.3);
+  /* Cyan hint */
+}
+
+/* Image Thumbnail */
+.post-card-image-link {
+  display: block;
+  overflow: hidden;
+  height: 200px;
+  /* Fixed height for consistency */
+}
+
+.post-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.post-card:hover .post-card-image {
+  transform: scale(1.05);
+}
+
+/* Card Content Container */
+.post-card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Header & Meta */
+.post-card-header {
+  margin-bottom: 1rem;
+}
+
+.post-meta-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+  /* Safe wrapping */
+}
+
+/* Category Tag */
+.post-category {
+  background: rgba(34, 211, 238, 0.1);
+  /* Cyan tint */
+  color: #22d3ee;
+  /* Cyan accent */
+  padding: 0.2rem 0.6rem;
+  border-radius: 99px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.post-date {
+  color: #94a3b8;
+}
+
+/* Title */
+.post-card-title {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.post-card-title a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.post-card-title a:hover {
+  color: #22d3ee;
+  /* Cyan hover */
+}
+
+/* Excerpt */
+.post-excerpt {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* Footer & CTA */
+.post-card-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.read-more-link {
+  display: inline-flex;
+  align-items: center;
+  color: #22d3ee;
+  /* Cyan accent */
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: gap 0.2s ease;
+  gap: 0.5rem;
+}
+
+.read-more-link:hover {
+  gap: 0.75rem;
+  /* Slide arrow effect */
+  text-decoration: underline;
+}
+/* Post Card - Redesigned Phase 8 */
+.post-card {
+  background: #161e2d; /* Requested Dark BG */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  overflow: hidden; /* For image zooming */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  border-color: rgba(34, 211, 238, 0.3); /* Cyan hint */
+}
+
+/* Image Thumbnail */
+.post-card-image-link {
+  display: block;
+  overflow: hidden;
+  height: 200px; /* Fixed height for consistency */
+}
+
+.post-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.post-card:hover .post-card-image {
+  transform: scale(1.05);
+}
+
+/* Card Content Container */
+.post-card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Header & Meta */
+.post-card-header {
+  margin-bottom: 1rem;
+}
+
+.post-meta-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  flex-wrap: wrap; /* Safe wrapping */
+}
+
+/* Category Tag */
+.post-category {
+  background: rgba(34, 211, 238, 0.1); /* Cyan tint */
+  color: #22d3ee; /* Cyan accent */
+  padding: 0.2rem 0.6rem;
+  border-radius: 99px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.post-date {
+  color: #94a3b8;
+}
+
+/* Title */
+.post-card-title {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.post-card-title a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.post-card-title a:hover {
+  color: #22d3ee; /* Cyan hover */
+}
+
+/* Excerpt */
+.post-excerpt {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* Footer & CTA */
+.post-card-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.read-more-link {
+  display: inline-flex;
+  align-items: center;
+  color: #22d3ee; /* Cyan accent */
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: gap 0.2s ease;
+  gap: 0.5rem;
+}
+
+.read-more-link:hover {
+  gap: 0.75rem; /* Slide arrow effect */
+  text-decoration: underline;
+}
+
+
+
+/* ============================================
+   RESTORING FOCUSED IMPROVEMENTS (Dark Mode)
+   ============================================ */
+
+/* 1. Section Titles - Clear & Prominent */
+.page-title, .section-title {
+  font-size: 3rem !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  margin-bottom: 2rem !important;
+}
+
+/* 2. Profile Intro - High Visibility */
+.profile-name {
+  font-size: 3.8rem !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  text-shadow: 0 5px 15px rgba(34, 211, 238, 0.3) !important;
+  line-height: 1.1 !important;
+}
+
+.profile-title {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: #22d3ee !important; /* Cyan accent */
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.avatar-img {
+  border: 3px solid #22d3ee !important;
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.2) !important;
+}
+
+/* 3. Metadata Visibility */
+.post-meta, .entry-meta {
+  font-size: 1.1rem !important;
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
+}
+
+/* 4. Hero Section Centering (Requested) */
+.hero-container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  width: 100% !important;
+  max-width: 800px !important;
+  margin: 0 auto !important;
+}
+
+/* ============================================
+   PROFILE INTRO - ULTRA HIGHLIGHT (User Request)
+   "Maximum Size & Glow"
+   ============================================ */
+
+/* 1. Profile Name - Mega & Gradient Highlight */
+.profile-name {
+  font-size: 5rem !important; /* Even Bigger */
+  font-weight: 950 !important;
+  
+  /* Vibrant Cyan-to-Indigo Gradient */
+  background: linear-gradient(135deg, #ffffff 40%, #22d3ee 80%, #6366f1 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  
+  /* Deep Glowing Shadow */
+  filter: drop-shadow(0 0 15px rgba(34, 211, 238, 0.4)) !important;
+  margin-bottom: 0.8rem !important;
+  letter-spacing: -0.05em !important;
+}
+
+/* 2. Job Title - Neon Highlight */
+.profile-title {
+  font-size: 1.9rem !important;
+  color: #22d3ee !important;
+  background: rgba(34, 211, 238, 0.1) !important; /* Subtle highlight box */
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 50px !important;
+  border-left: 5px solid #22d3ee !important;
+  display: inline-block !important;
+  box-shadow: 10px 0 20px rgba(34, 211, 238, 0.1) !important;
+}
+
+/* ============================================
+   PROFILE NAME - COLOR CUSTOMIZATION (User Request)
+   "Electric Blue"
+   ============================================ */
+.profile-name {
+  color: #818cf8 !important; /* Premium Electric Indigo */
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  -webkit-background-clip: initial !important;
+  text-shadow: 0 0 20px rgba(129, 140, 248, 0.4) !important;
+}
+
+/* ============================================
+   HOME HERO - SUPER MEGA NEON (User Request)
+   "Ultimate Impact & High-End Aesthetic"
+   ============================================ */
+
+/* 1. Hero Title - Colossal & Glowing Indigo */
+.hero-title {
+  font-size: 5.8rem !important; /* Massive */
+  font-weight: 1000 !important;
+  color: #818cf8 !important; /* Electric Indigo */
+  line-height: 1 !important;
+  margin-bottom: 2rem !important;
+  letter-spacing: -0.07em !important;
+  text-shadow: 0 0 40px rgba(129, 140, 248, 0.5) !important;
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  -webkit-background-clip: initial !important;
+  
+  /* Subtle float animation */
+  animation: hero-float 6s ease-in-out infinite;
+}
+
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* 2. Hero Subtitle - Bold Highlight */
+.hero-subtitle {
+  font-size: 1.7rem !important;
+  color: #f8fafc !important;
+  line-height: 1.6 !important;
+  max-width: 850px !important;
+  margin: 0 auto 4rem auto !important;
+  background: rgba(129, 140, 248, 0.15) !important; /* Indigo tint highlight */
+  padding: 0.8rem 2rem !important;
+  border-radius: 16px !important;
+  border-left: 6px solid #22d3ee !important; /* Cyan accent bar */
+  display: inline-block !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 3. Hero CTA - The Ultimate Button */
+.btn-primary {
+  font-size: 1.5rem !important;
+  padding: 1.4rem 4rem !important;
+  font-weight: 900 !important;
+  border-radius: 200px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  background: linear-gradient(135deg, #22d3ee 0%, #6366f1 50%, #4f46e5 100%) !important;
+  box-shadow: 0 20px 50px rgba(34, 211, 238, 0.5) !important;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  color: #ffffff !important;
+  border: none !important;
+  text-align: center;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  transform: scale(1.15) translateY(-10px) !important;
+  box-shadow: 0 35px 70px rgba(34, 211, 238, 0.7) !important;
+  filter: brightness(1.25) !important;
+}
+
+/* ============================================
+   BLOG PAGE TITLE - ULTRA NEON HIGHLIGHT (User Request)
+   "Maximum Presence for PhiÍn"
+   ============================================ */
+
+.page-title {
+  font-size: 5.5rem !important; /* Huge like Home Hero */
+  font-weight: 1000 !important;
+  color: #818cf8 !important; /* Electric Indigo */
+  text-align: center !important;
+  margin: 4rem 0 5rem 0 !important;
+  letter-spacing: -0.07em !important;
+  text-shadow: 0 0 40px rgba(129, 140, 248, 0.5) !important;
+  
+  /* Feature Highlight: Glowing Underline/Badge effect */
+  position: relative;
+  display: inline-block !important; /* Center the container */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Float animation for the title */
+.page-title {
+  animation: hero-float 6s ease-in-out infinite;
+}
+
+@keyframes hero-float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-15px); }
+}
+
+/* ============================================
+   ULTIMATE PREMIUM HEADERS (Home & Profile)
+   '–?p, Highlight v‡ Ua nhÏn' - Requested by PhiÍn
+   ============================================ */
+
+/* 1. Unified Glass Container for Headers */
+.hero-container, 
+.page-header {
+  background: rgba(15, 23, 42, 0.4) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 4rem 3rem !important;
+  border-radius: 32px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* 2. Title Highlight (Mega & Neon) */
+.hero-title, 
+.page-title {
+  font-size: 5.5rem !important;
+  font-weight: 900 !important;
+  margin-bottom: 1.5rem !important;
+  line-height: 1 !important;
+  letter-spacing: -0.05em !important;
+  
+  /* Platinum to Electric Indigo Gradient */
+  background: linear-gradient(to bottom, #ffffff 40%, #818cf8 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  
+  /* Text Glow */
+  filter: drop-shadow(0 0 20px rgba(129, 140, 248, 0.3)) !important;
+  
+  /* Entrance Animation */
+  animation: headerReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+/* 3. Subtitle / Metadata Highlight */
+.hero-subtitle, 
+.text-muted, 
+.post-meta {
+  font-size: 1.4rem !important;
+  color: #94a3b8 !important; /* Slate 400 */
+  line-height: 1.6 !important;
+  max-width: 700px !important;
+  margin-bottom: 3rem !important;
+  opacity: 0.9 !important;
+}
+
+/* Specific Highlight for Profile Date Badge */
+.page-header .text-muted {
+  background: rgba(34, 211, 238, 0.1) !important;
+  color: #22d3ee !important; /* Cyan */
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 50px !important;
+  border: 1px solid rgba(34, 211, 238, 0.2) !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+}
+
+/* 4. CTA Button (The Best Version) */
+.btn-primary {
+  font-size: 1.3rem !important;
+  padding: 1.2rem 3.5rem !important;
+  font-weight: 800 !important;
+  border-radius: 100px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 15px 35px -5px rgba(79, 70, 229, 0.5) !important;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  cursor: pointer !important;
+}
+
+.btn-primary:hover {
+  transform: translateY(-8px) scale(1.05) !important;
+  box-shadow: 0 25px 50px -10px rgba(79, 70, 229, 0.6) !important;
+  filter: brightness(1.1) !important;
+}
+
+/* Animations */
+@keyframes headerReveal {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Adjustments for Mobile */
+@media (max-width: 768px) {
+  .hero-container, .page-header {
+    padding: 3rem 1.5rem !important;
+  }
+  .hero-title, .page-title {
+    font-size: 3.5rem !important;
+  }
+  .hero-subtitle, .text-muted {
+    font-size: 1.1rem !important;
+  }
+}
+
+
+/* 5. Additional Selectors for Standard PaperMod Headers (Profile, Single Posts) */
+
+/* Glass Container for standard headers */
+header.mb-6, 
+.post-header {
+  background: rgba(15, 23, 42, 0.4) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 3rem 2rem !important;
+  border-radius: 24px !important;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5) !important;
+  margin-bottom: 4rem !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* Title styling for standard headers */
+header.mb-6 h1, 
+.post-title,
+.post-header h1 {
+  font-size: 4.5rem !important; /* Slightly smaller than home hero for hierarchy */
+  font-weight: 900 !important;
+  background: linear-gradient(to bottom, #ffffff 40%, #818cf8 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 0 15px rgba(129, 140, 248, 0.3)) !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.1 !important;
+}
+
+/* Metadata styling for standard headers */
+header.mb-6 .text-muted,
+.post-meta {
+  background: rgba(34, 211, 238, 0.1) !important;
+  color: #22d3ee !important;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 50px !important;
+  border: 1px solid rgba(34, 211, 238, 0.2) !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  display: inline-block !important;
+}
+
+
+/* ============================================
+   EXCLUSIVE BLOG PAGE REFINEMENT
+   "Ch? can ch?nh ph?n Blog" - Requested by PhiÍn
+   ============================================ */
+
+/* 1. Specialized Glass for Blogs List Title */
+.page-header {
+  background: rgba(15, 23, 42, 0.6) !important; /* Slightly darker glass for depth */
+  border: 2px solid rgba(34, 211, 238, 0.2) !important; /* Cyan subtle border */
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.1) !important;
+  margin-top: 2rem !important;
+  padding: 4rem 2rem !important;
+}
+
+/* 2. Specialized Title Highlight (Blogs Only) */
+.page-header .page-title {
+  color: #22d3ee !important; /* Pure Neon Cyan */
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.5)) !important;
+  font-size: 5rem !important;
+  
+  /* Reset Float to be more stable on list page */
+  animation: blog-glow 3s ease-in-out infinite alternate !important;
+}
+
+@keyframes blog-glow {
+  from { text-shadow: 0 0 10px rgba(34, 211, 238, 0.2); }
+  to { text-shadow: 0 0 30px rgba(34, 211, 238, 0.6); }
+}
+
+/* 3. Sub-highlight bar for Blogs title */
+.page-header::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 4px;
+  background: #22d3ee;
+  margin: 1.5rem auto 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #22d3ee;
+}
+
+/* ============================================
+   ULTIMATE BLOG CENTERING FIX (NO OFFSETS)
+   "S?a l?i l?ch ph?i - Can gi?a chu?n 100%"
+   ============================================ */
+
+/* 1. Reset EVERY global title offset that might cause shifting */
+.page-title {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
+  text-align: center !important;
+}
+
+/* 2. Force the Blog Header Container to center its children */
+.page-header {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* 3. Specialized Blogs Title Style (Cyan Neon) */
+.page-header .page-title {
+  color: #22d3ee !important;
+  font-size: 5.5rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 0 30px rgba(34, 211, 238, 0.6) !important;
+  margin-bottom: 2rem !important;
+}

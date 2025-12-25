@@ -1,0 +1,8 @@
+<script>
+    const currentUrl = window.location.pathname;
+    document.querySelectorAll('.menu li a').forEach(link => {
+        if (link.getAttribute('href') === currentUrl || (link.getAttribute('href') !== '/' && currentUrl.startsWith(link.getAttribute('href')))) {
+            link.closest('li').classList.add('active');
+        }
+    });
+</script>
