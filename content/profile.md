@@ -8,7 +8,7 @@ hidden: true
 
 <div class="profile-header">
   <div class="profile-avatar">
-    <img src="/images/avatar.jpg?v=2" alt="Vương Trung Phiên" class="avatar-img">
+    <img src="/blog_network_cn/images/avatar.jpg?v=2" alt="Vương Trung Phiên" class="avatar-img">
   </div>
   <div class="profile-intro">
     <h1 class="profile-name">
