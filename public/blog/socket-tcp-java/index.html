@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Java Socket Programming: Xây dựng Chat Server đơn giản với TCP | Blog Lập Trình Mạng</title>
 <meta name="keywords" content="Java, Socket, TCP, Backend">
 <meta name="description" content="Đi sâu vào lập trình mạng tầng thấp với Java Socket. Hướng dẫn từng bước xây dựng mô hình Client-Server giao tiếp hay chiều qua giao thức TCP tin cậy.">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/blog/socket-tcp-java/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" integrity="sha256-/VVmxSauSKravZUHmKLcNWhTZAFWDq5cqsN2WkKp57U=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="canonical" href="https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/">
+<link crossorigin="anonymous" href="/blog_network_cn/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://alex11177.github.io/blog_network_cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://alex11177.github.io/blog_network_cn/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://alex11177.github.io/blog_network_cn/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://alex11177.github.io/blog_network_cn/apple-touch-icon.png">
+<link rel="mask-icon" href="https://alex11177.github.io/blog_network_cn/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/socket-tcp-java/">
+<link rel="alternate" hreflang="en" href="https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/">
 <noscript>
     <style>
         #theme-toggle,
@@ -95,8 +95,74 @@
 <script src="https://cdn.tailwindcss.com"></script>
 
 
-<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/blog_network_cn/css/custom.css">
+<meta property="og:url" content="https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/">
+  <meta property="og:site_name" content="Blog Lập Trình Mạng">
+  <meta property="og:title" content="Java Socket Programming: Xây dựng Chat Server đơn giản với TCP">
+  <meta property="og:description" content="Đi sâu vào lập trình mạng tầng thấp với Java Socket. Hướng dẫn từng bước xây dựng mô hình Client-Server giao tiếp hay chiều qua giao thức TCP tin cậy.">
+  <meta property="og:locale" content="vi-vn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-12-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-23T00:00:00+00:00">
+    <meta property="article:tag" content="Java">
+    <meta property="article:tag" content="Socket">
+    <meta property="article:tag" content="TCP">
+    <meta property="article:tag" content="Backend">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java Socket Programming: Xây dựng Chat Server đơn giản với TCP">
+<meta name="twitter:description" content="Đi sâu vào lập trình mạng tầng thấp với Java Socket. Hướng dẫn từng bước xây dựng mô hình Client-Server giao tiếp hay chiều qua giao thức TCP tin cậy.">
 
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs",
+      "item": "https://alex11177.github.io/blog_network_cn/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Java Socket Programming: Xây dựng Chat Server đơn giản với TCP",
+      "item": "https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Java Socket Programming: Xây dựng Chat Server đơn giản với TCP",
+  "name": "Java Socket Programming: Xây dựng Chat Server đơn giản với TCP",
+  "description": "Đi sâu vào lập trình mạng tầng thấp với Java Socket. Hướng dẫn từng bước xây dựng mô hình Client-Server giao tiếp hay chiều qua giao thức TCP tin cậy.",
+  "keywords": [
+    "Java", "Socket", "TCP", "Backend"
+  ],
+  "articleBody": "TCP Socket là gì? TCP (Transmission Control Protocol) là giao thức hướng kết nối (connection-oriented). Trước khi truyền dữ liệu, nó bắt buộc phải thiết lập đường truyền (3-way handshake). Điều này đảm bảo:\nDữ liệu đến nơi đủ và đúng thứ tự. Không bị mất gói tin. Trong Java, chúng ta dùng gói java.net.\nXây dựng Server (Echo Server) Server sẽ lắng nghe ở một cổng (port), nhận tin nhắn từ Client và gửi phản hồi lại.\nimport java.io.*; import java.net.*; public class SimpleServer { public static void main(String[] args) { int port = 8080; try (ServerSocket serverSocket = new ServerSocket(port)) { System.out.println(\"Server đang chạy tại port \" + port + \"...\"); while (true) { // 1. Chấp nhận kết nối Socket socket = serverSocket.accept(); System.out.println(\"Client mới đã kết nối!\"); // 2. Tạo luồng Input/Output InputStream input = socket.getInputStream(); BufferedReader reader = new BufferedReader(new InputStreamReader(input)); OutputStream output = socket.getOutputStream(); PrintWriter writer = new PrintWriter(output, true); // 3. Đọc và phản hồi String message = reader.readLine(); System.out.println(\"Nhận được: \" + message); writer.println(\"Server xác nhận: \" + message); socket.close(); } } catch (IOException e) { e.printStackTrace(); } } } Xây dựng Client Client kết nối đến IP và Port của Server để gửi tin.\nimport java.io.*; import java.net.*; public class SimpleClient { public static void main(String[] args) { String hostname = \"localhost\"; int port = 8080; try (Socket socket = new Socket(hostname, port)) { // Gửi tin nhắn PrintWriter writer = new PrintWriter(socket.getOutputStream(), true); writer.println(\"Hello from Java Client!\"); // Đọc phản hồi BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream())); String response = reader.readLine(); System.out.println(response); } catch (IOException e) { e.printStackTrace(); } } } Giải thích luồng đi (Workflow) ServerSocket: Mở cổng 8080 chờ đợi. accept(): Server chặn (block) chương trình lại cho đến khi có ai đó kết nối. Client connect: Gửi yêu cầu bắt tay. IO Stream: Sau khi kết nối thành công, socket hoạt động như một “ống nước”. Bạn đổ dữ liệu vào đầu này (OutputStream), đầu kia hứng (InputStream). Ứng dụng thực tế Dù ngày nay chúng ta dùng HTTP (Spring Boot), nhưng Socket vẫn là nền tảng của:\nTrò chơi trực tuyến (Real-time Gaming). Ứng dụng chat. Database Driver (kết nối tới MySQL/Redis). ",
+  "wordCount" : "366",
+  "inLanguage": "en",
+  "datePublished": "2025-12-23T00:00:00Z",
+  "dateModified": "2025-12-23T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Blog Lập Trình Mạng",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://alex11177.github.io/blog_network_cn/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 <body id="top">
     
@@ -114,11 +180,11 @@
 
     <nav class="hidden md:flex items-center">
       
-        <a href="/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Home</a>
+        <a href="/blog_network_cn/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Home</a>
       
-        <a href="/blog/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Blog</a>
+        <a href="/blog_network_cn/blog/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Blog</a>
       
-        <a href="/profile/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Profile</a>
+        <a href="/blog_network_cn/profile/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Profile</a>
       
     </nav>
 
@@ -234,7 +300,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Blog Lập Trình Mạng</a></span> · 
+        <span>&copy; 2025 <a href="https://alex11177.github.io/blog_network_cn/">Blog Lập Trình Mạng</a></span> · 
 
     <span>
         Powered by
@@ -303,16 +369,19 @@
 
 </script>
 <script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
+    const _themeToggle = document.getElementById("theme-toggle");
+    if (_themeToggle) {
+        _themeToggle.addEventListener("click", () => {
+            const html = document.querySelector("html");
+            if (html.dataset.theme === "dark") {
+                html.dataset.theme = 'light';
+                localStorage.setItem("pref-theme", 'light');
+            } else {
+                html.dataset.theme = 'dark';
+                localStorage.setItem("pref-theme", 'dark');
+            }
+        });
+    }
 
 </script>
 </body>

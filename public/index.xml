@@ -2,84 +2,84 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Trang chủ on Blog Lập Trình Mạng</title>
-    <link>http://localhost:1313/</link>
+    <link>https://alex11177.github.io/blog_network_cn/</link>
     <description>Recent content in Trang chủ on Blog Lập Trình Mạng</description>
     <generator>Hugo -- 0.153.0</generator>
     <language>vi-vn</language>
     <lastBuildDate>Tue, 23 Dec 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://alex11177.github.io/blog_network_cn/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)</title>
-      <link>http://localhost:1313/blog/dom-javascript/</link>
+      <link>https://alex11177.github.io/blog_network_cn/blog/dom-javascript/</link>
       <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/dom-javascript/</guid>
+      <guid>https://alex11177.github.io/blog_network_cn/blog/dom-javascript/</guid>
       <description>Trước khi dùng React hay Vue, bạn phải hiểu DOM. Bài viết này hướng dẫn cách thao tác phần tử HTML, lắng nghe sự kiện và tối ưu hiệu suất render mà không cần jQuery.</description>
     </item>
     <item>
       <title>Fetch API: Cuộc cách mạng Ajax trong JavaScript hiện đại</title>
-      <link>http://localhost:1313/blog/fetch-api/</link>
+      <link>https://alex11177.github.io/blog_network_cn/blog/fetch-api/</link>
       <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/fetch-api/</guid>
+      <guid>https://alex11177.github.io/blog_network_cn/blog/fetch-api/</guid>
       <description>Quên XMLHttpRequest đi. Fetch API là tiêu chuẩn mới để gọi API tỏng trình duyệt, kết hợp hoàn hảo với Promise và Async/Await. Hướng dẫn toàn tập từ GET, POST đến xử lý lỗi.</description>
     </item>
     <item>
       <title>Java là gì? Tổng quan và lộ trình học cho người mới bắt đầu (2025)</title>
-      <link>http://localhost:1313/blog/java-la-gi/</link>
+      <link>https://alex11177.github.io/blog_network_cn/blog/java-la-gi/</link>
       <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/java-la-gi/</guid>
+      <guid>https://alex11177.github.io/blog_network_cn/blog/java-la-gi/</guid>
       <description>Khám phá Java - ngôn ngữ lập trình mạnh mẽ đứng sau hàng tỷ thiết bị. Bài viết này cung cấp cái nhìn toàn diện về lịch sử, kiến trúc JVM, và lộ trình học tập để trở thành Backend Developer chuyên nghiệp.</description>
     </item>
     <item>
       <title>Java Socket Programming: Xây dựng Chat Server đơn giản với TCP</title>
-      <link>http://localhost:1313/blog/socket-tcp-java/</link>
+      <link>https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/</link>
       <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/socket-tcp-java/</guid>
+      <guid>https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/</guid>
       <description>Đi sâu vào lập trình mạng tầng thấp với Java Socket. Hướng dẫn từng bước xây dựng mô hình Client-Server giao tiếp hay chiều qua giao thức TCP tin cậy.</description>
     </item>
     <item>
       <title>JavaScript là gì? Từ Sripting đơn giản đến bá chủ Full-stack (2025)</title>
-      <link>http://localhost:1313/blog/javascript-la-gi/</link>
+      <link>https://alex11177.github.io/blog_network_cn/blog/javascript-la-gi/</link>
       <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/javascript-la-gi/</guid>
+      <guid>https://alex11177.github.io/blog_network_cn/blog/javascript-la-gi/</guid>
       <description>JavaScript đã vượt xa khỏi trình duyệt để trở thành ngôn ngữ phổ biến nhất thế giới. Bài viết này phân tích sự trỗi dậy của JS, từ thao tác DOM đơn giản đến Node.js và hệ sinh thái hiện đại.</description>
     </item>
     <item>
       <title>LAN, MAN, WAN: Phân loại mạng máy tính và Ứng dụng thực tế</title>
-      <link>http://localhost:1313/blog/lan-man-wan/</link>
+      <link>https://alex11177.github.io/blog_network_cn/blog/lan-man-wan/</link>
       <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/lan-man-wan/</guid>
+      <guid>https://alex11177.github.io/blog_network_cn/blog/lan-man-wan/</guid>
       <description>Phân biệt LAN, MAN, WAN không chỉ là lý thuyết đi thi. Nó ảnh hưởng trực tiếp đến cách bạn thiết kế hệ thống phân tán và chọn hạ tầng server.</description>
     </item>
     <item>
       <title>Lập trình hướng đối tượng (OOP) trong Java: 4 trụ cột và Best Practices</title>
-      <link>http://localhost:1313/blog/oop-trong-java/</link>
+      <link>https://alex11177.github.io/blog_network_cn/blog/oop-trong-java/</link>
       <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/oop-trong-java/</guid>
+      <guid>https://alex11177.github.io/blog_network_cn/blog/oop-trong-java/</guid>
       <description>OOP không chỉ là lý thuyết sgk. Bài viết này đi sâu vào 4 tính chất (Encapsulation, Inheritance, Polymorphism, Abstraction) kèm theo các quy tắc thiết kế (SOLID) thực tế trong dự án Java lớn.</description>
     </item>
     <item>
       <title>Lập trình UDP trong Java: Tốc độ trên hết (Fire and Forget)</title>
-      <link>http://localhost:1313/blog/udp-trong-java/</link>
+      <link>https://alex11177.github.io/blog_network_cn/blog/udp-trong-java/</link>
       <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/udp-trong-java/</guid>
+      <guid>https://alex11177.github.io/blog_network_cn/blog/udp-trong-java/</guid>
       <description>Khác với TCP, UDP là giao thức &amp;lsquo;gửi rồi quên&amp;rsquo;. Tại sao lại dùng một giao thức không tin cậy? Cùng tìm hiểu cách implement UDP Client/Server trong Java.</description>
     </item>
     <item>
       <title>Mô hình OSI: 7 tầng giao tiếp mạng mà mọi Developer cần biết</title>
-      <link>http://localhost:1313/blog/mo-hinh-osi/</link>
+      <link>https://alex11177.github.io/blog_network_cn/blog/mo-hinh-osi/</link>
       <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/mo-hinh-osi/</guid>
+      <guid>https://alex11177.github.io/blog_network_cn/blog/mo-hinh-osi/</guid>
       <description>Từ Physical đến Application, mô hình OSI là bản đồ giúp bạn hiểu cách Internet vận hành. Tại sao HTTP lại ở tầng 7 còn IP ở tầng 3? Cùng giải mã bí mật này.</description>
     </item>
     <item>
       <title>Profile</title>
-      <link>http://localhost:1313/profile/</link>
+      <link>https://alex11177.github.io/blog_network_cn/profile/</link>
       <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/profile/</guid>
+      <guid>https://alex11177.github.io/blog_network_cn/profile/</guid>
       <description>&lt;div class=&#34;profile-container&#34;&gt;
 &lt;div class=&#34;profile-header&#34;&gt;
   &lt;div class=&#34;profile-avatar&#34;&gt;
-    &lt;img src=&#34;http://localhost:1313/images/avatar.jpg?v=2&#34; alt=&#34;Vương Trung Phiên&#34; class=&#34;avatar-img&#34;&gt;
+    &lt;img src=&#34;https://alex11177.github.io/blog_network_cn/images/avatar.jpg?v=2&#34; alt=&#34;Vương Trung Phiên&#34; class=&#34;avatar-img&#34;&gt;
   &lt;/div&gt;
   &lt;div class=&#34;profile-intro&#34;&gt;
     &lt;h1 class=&#34;profile-name&#34;&gt;
@@ -122,19 +122,19 @@
   &lt;h2 class=&#34;section-heading&#34;&gt;📜 Chứng chỉ&lt;/h2&gt;
   &lt;div class=&#34;certificates-list&#34;&gt;
     &lt;div class=&#34;cert-item&#34;&gt;
-      &lt;a href=&#34;http://localhost:1313/files/certificates/JavaScriptEssentials2Update20251223-31-lhy0wq.pdf&#34; target=&#34;_blank&#34; class=&#34;cert-link&#34;&gt;
+      &lt;a href=&#34;https://alex11177.github.io/blog_network_cn/files/certificates/JavaScriptEssentials2Update20251223-31-lhy0wq.pdf&#34; target=&#34;_blank&#34; class=&#34;cert-link&#34;&gt;
         &lt;span class=&#34;cert-icon&#34;&gt;📄&lt;/span&gt;
         &lt;span class=&#34;cert-name&#34;&gt;JavaScript Essentials 2 (Update 2025)&lt;/span&gt;
       &lt;/a&gt;
     &lt;/div&gt;
     &lt;div class=&#34;cert-item&#34;&gt;
-      &lt;a href=&#34;http://localhost:1313/files/certificates/JavaScriptEssentials1Update20251223-33-y9bk3c.pdf&#34; target=&#34;_blank&#34; class=&#34;cert-link&#34;&gt;
+      &lt;a href=&#34;https://alex11177.github.io/blog_network_cn/files/certificates/JavaScriptEssentials1Update20251223-33-y9bk3c.pdf&#34; target=&#34;_blank&#34; class=&#34;cert-link&#34;&gt;
         &lt;span class=&#34;cert-icon&#34;&gt;📄&lt;/span&gt;
         &lt;span class=&#34;cert-name&#34;&gt;JavaScript Essentials 1 (Update 2025)&lt;/span&gt;
       &lt;/a&gt;
     &lt;/div&gt;
     &lt;div class=&#34;cert-item&#34;&gt;
-      &lt;a href=&#34;http://localhost:1313/files/certificates/NetworkingBasicsUpdate20251223-31-frorrv.pdf&#34; target=&#34;_blank&#34; class=&#34;cert-link&#34;&gt;
+      &lt;a href=&#34;https://alex11177.github.io/blog_network_cn/files/certificates/NetworkingBasicsUpdate20251223-31-frorrv.pdf&#34; target=&#34;_blank&#34; class=&#34;cert-link&#34;&gt;
         &lt;span class=&#34;cert-icon&#34;&gt;📄&lt;/span&gt;
         &lt;span class=&#34;cert-name&#34;&gt;Networking Basics (Update 2025)&lt;/span&gt;
       &lt;/a&gt;

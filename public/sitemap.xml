@@ -2,115 +2,115 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/api/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/api/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/backend/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/backend/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/blog/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/categories/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/core/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/categories/core/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/design-patterns/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/design-patterns/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/dom/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/dom/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/dom-javascript/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/blog/dom-javascript/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/fetch/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/fetch/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/fetch-api/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/blog/fetch-api/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/frontend/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/frontend/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/fullstack/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/fullstack/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/java/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/categories/java/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/java/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/java/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/java-la-gi/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/blog/java-la-gi/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/socket-tcp-java/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/javascript/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/categories/javascript/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/javascript/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/javascript/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/javascript-la-gi/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/blog/javascript-la-gi/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/lan/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/lan/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/lan-man-wan/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/blog/lan-man-wan/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/oop-trong-java/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/blog/oop-trong-java/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/udp-trong-java/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/blog/udp-trong-java/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/m%E1%BA%A1ng/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/m%E1%BA%A1ng/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/mo-hinh-osi/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/blog/mo-hinh-osi/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/network/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/network/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/networking/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/categories/networking/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/oop/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/oop/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/osi/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/osi/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/overview/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/overview/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/profile/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/profile/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/socket/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/socket/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/tcp/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/tcp/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/udp/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/udp/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/wan/</loc>
+    <loc>https://alex11177.github.io/blog_network_cn/tags/wan/</loc>
     <lastmod>2025-12-23T00:00:00+00:00</lastmod>
   </url>
 </urlset>

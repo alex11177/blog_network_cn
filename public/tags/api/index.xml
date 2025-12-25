@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>API on Blog Lập Trình Mạng</title>
-    <link>http://localhost:1313/tags/api/</link>
+    <link>https://alex11177.github.io/blog_network_cn/tags/api/</link>
     <description>Recent content in API on Blog Lập Trình Mạng</description>
     <generator>Hugo -- 0.153.0</generator>
     <language>vi-vn</language>
     <lastBuildDate>Tue, 23 Dec 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/api/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://alex11177.github.io/blog_network_cn/tags/api/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fetch API: Cuộc cách mạng Ajax trong JavaScript hiện đại</title>
-      <link>http://localhost:1313/blog/fetch-api/</link>
+      <link>https://alex11177.github.io/blog_network_cn/blog/fetch-api/</link>
       <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/fetch-api/</guid>
+      <guid>https://alex11177.github.io/blog_network_cn/blog/fetch-api/</guid>
       <description>Quên XMLHttpRequest đi. Fetch API là tiêu chuẩn mới để gọi API tỏng trình duyệt, kết hợp hoàn hảo với Promise và Async/Await. Hướng dẫn toàn tập từ GET, POST đến xử lý lỗi.</description>
     </item>
   </channel>
