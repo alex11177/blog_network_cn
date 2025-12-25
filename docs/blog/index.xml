@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Blogs on Blog Lập Trình Mạng</title>
+    <link>http://localhost:1313/blog/</link>
+    <description>Recent content in Blogs on Blog Lập Trình Mạng</description>
+    <generator>Hugo -- 0.153.0</generator>
+    <language>vi-vn</language>
+    <lastBuildDate>Tue, 23 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)</title>
+      <link>http://localhost:1313/blog/dom-javascript/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/dom-javascript/</guid>
+      <description>Trước khi dùng React hay Vue, bạn phải hiểu DOM. Bài viết này hướng dẫn cách thao tác phần tử HTML, lắng nghe sự kiện và tối ưu hiệu suất render mà không cần jQuery.</description>
+    </item>
+    <item>
+      <title>Fetch API: Cuộc cách mạng Ajax trong JavaScript hiện đại</title>
+      <link>http://localhost:1313/blog/fetch-api/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/fetch-api/</guid>
+      <description>Quên XMLHttpRequest đi. Fetch API là tiêu chuẩn mới để gọi API tỏng trình duyệt, kết hợp hoàn hảo với Promise và Async/Await. Hướng dẫn toàn tập từ GET, POST đến xử lý lỗi.</description>
+    </item>
+    <item>
+      <title>Java là gì? Tổng quan và lộ trình học cho người mới bắt đầu (2025)</title>
+      <link>http://localhost:1313/blog/java-la-gi/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/java-la-gi/</guid>
+      <description>Khám phá Java - ngôn ngữ lập trình mạnh mẽ đứng sau hàng tỷ thiết bị. Bài viết này cung cấp cái nhìn toàn diện về lịch sử, kiến trúc JVM, và lộ trình học tập để trở thành Backend Developer chuyên nghiệp.</description>
+    </item>
+    <item>
+      <title>Java Socket Programming: Xây dựng Chat Server đơn giản với TCP</title>
+      <link>http://localhost:1313/blog/socket-tcp-java/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/socket-tcp-java/</guid>
+      <description>Đi sâu vào lập trình mạng tầng thấp với Java Socket. Hướng dẫn từng bước xây dựng mô hình Client-Server giao tiếp hay chiều qua giao thức TCP tin cậy.</description>
+    </item>
+    <item>
+      <title>JavaScript là gì? Từ Sripting đơn giản đến bá chủ Full-stack (2025)</title>
+      <link>http://localhost:1313/blog/javascript-la-gi/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/javascript-la-gi/</guid>
+      <description>JavaScript đã vượt xa khỏi trình duyệt để trở thành ngôn ngữ phổ biến nhất thế giới. Bài viết này phân tích sự trỗi dậy của JS, từ thao tác DOM đơn giản đến Node.js và hệ sinh thái hiện đại.</description>
+    </item>
+    <item>
+      <title>LAN, MAN, WAN: Phân loại mạng máy tính và Ứng dụng thực tế</title>
+      <link>http://localhost:1313/blog/lan-man-wan/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/lan-man-wan/</guid>
+      <description>Phân biệt LAN, MAN, WAN không chỉ là lý thuyết đi thi. Nó ảnh hưởng trực tiếp đến cách bạn thiết kế hệ thống phân tán và chọn hạ tầng server.</description>
+    </item>
+    <item>
+      <title>Lập trình hướng đối tượng (OOP) trong Java: 4 trụ cột và Best Practices</title>
+      <link>http://localhost:1313/blog/oop-trong-java/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/oop-trong-java/</guid>
+      <description>OOP không chỉ là lý thuyết sgk. Bài viết này đi sâu vào 4 tính chất (Encapsulation, Inheritance, Polymorphism, Abstraction) kèm theo các quy tắc thiết kế (SOLID) thực tế trong dự án Java lớn.</description>
+    </item>
+    <item>
+      <title>Lập trình UDP trong Java: Tốc độ trên hết (Fire and Forget)</title>
+      <link>http://localhost:1313/blog/udp-trong-java/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/udp-trong-java/</guid>
+      <description>Khác với TCP, UDP là giao thức &amp;lsquo;gửi rồi quên&amp;rsquo;. Tại sao lại dùng một giao thức không tin cậy? Cùng tìm hiểu cách implement UDP Client/Server trong Java.</description>
+    </item>
+    <item>
+      <title>Mô hình OSI: 7 tầng giao tiếp mạng mà mọi Developer cần biết</title>
+      <link>http://localhost:1313/blog/mo-hinh-osi/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/mo-hinh-osi/</guid>
+      <description>Từ Physical đến Application, mô hình OSI là bản đồ giúp bạn hiểu cách Internet vận hành. Tại sao HTTP lại ở tầng 7 còn IP ở tầng 3? Cùng giải mã bí mật này.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Mạng on Blog Lập Trình Mạng</title>
+    <link>http://localhost:1313/tags/m%E1%BA%A1ng/</link>
+    <description>Recent content in Mạng on Blog Lập Trình Mạng</description>
+    <generator>Hugo -- 0.153.0</generator>
+    <language>vi-vn</language>
+    <lastBuildDate>Tue, 23 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/m%E1%BA%A1ng/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LAN, MAN, WAN: Phân loại mạng máy tính và Ứng dụng thực tế</title>
+      <link>http://localhost:1313/blog/lan-man-wan/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/lan-man-wan/</guid>
+      <description>Phân biệt LAN, MAN, WAN không chỉ là lý thuyết đi thi. Nó ảnh hưởng trực tiếp đến cách bạn thiết kế hệ thống phân tán và chọn hạ tầng server.</description>
+    </item>
+    <item>
+      <title>Mô hình OSI: 7 tầng giao tiếp mạng mà mọi Developer cần biết</title>
+      <link>http://localhost:1313/blog/mo-hinh-osi/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/mo-hinh-osi/</guid>
+      <description>Từ Physical đến Application, mô hình OSI là bản đồ giúp bạn hiểu cách Internet vận hành. Tại sao HTTP lại ở tầng 7 còn IP ở tầng 3? Cùng giải mã bí mật này.</description>
+    </item>
+  </channel>
+</rss>

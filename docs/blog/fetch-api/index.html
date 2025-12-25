@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Fetch API: Cuộc cách mạng Ajax trong JavaScript hiện đại | Blog Lập Trình Mạng</title>
+<meta name="keywords" content="JavaScript, Fetch, API, Frontend">
+<meta name="description" content="Quên XMLHttpRequest đi. Fetch API là tiêu chuẩn mới để gọi API tỏng trình duyệt, kết hợp hoàn hảo với Promise và Async/Await. Hướng dẫn toàn tập từ GET, POST đến xử lý lỗi.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blog/fetch-api/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" integrity="sha256-/VVmxSauSKravZUHmKLcNWhTZAFWDq5cqsN2WkKp57U=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/fetch-api/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+<script>
+	tailwind = { config: {
+		darkMode: 'class',
+		theme: {
+			extend: {
+				colors: {
+					accent: '#60a5fa',
+					surface: '#0b1220',
+					page: '#0f1724',
+					muted: '#94a3b8'
+				}
+			}
+		}
+	}}
+	
+	document.documentElement.classList.add('dark')
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+
+
+<link rel="stylesheet" href="/css/custom.css">
+
+</head>
+<body id="top">
+    
+<header class="bg-surface text-white">
+  <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-accent rounded-md flex items-center justify-center shadow-md">
+        <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="text-xl font-semibold leading-tight">Blog Lập Trình Mạng</div>
+        <div class="text-sm text-muted"></div>
+      </div>
+    </a>
+
+    <nav class="hidden md:flex items-center">
+      
+        <a href="/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Home</a>
+      
+        <a href="/blog/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Blog</a>
+      
+        <a href="/profile/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Profile</a>
+      
+    </nav>
+
+    <div class="md:hidden">
+      <button class="p-2 rounded bg-transparent text-muted focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</header>
+<main class="main">
+<main class="max-w-3xl mx-auto px-4 py-12">
+  <article class="prose prose-invert lg:prose-lg">
+    <header class="mb-6">
+      <h1 class="text-3xl font-extrabold text-white mb-2">Fetch API: Cuộc cách mạng Ajax trong JavaScript hiện đại</h1>
+      <div class="text-muted text-sm">23 Dec 2025 • JavaScript, Fetch, API, Frontend</div>
+      
+      <img src="/images/posts/fetch-api.jpg" alt="Fetch API: Cuộc cách mạng Ajax trong JavaScript hiện đại" class="mt-6 w-full h-64 object-cover rounded-lg shadow-lg">
+      
+    </header>
+
+    <div class="post-content text-gray-200">
+      <h2 id="1-tại-sao-fetch-ra-đời">1. Tại sao Fetch ra đời?</h2>
+<p>Ngày xưa, để gọi API (Ajax), chúng ta phải dùng <code>XMLHttpRequest</code>. Cú pháp của nó rất dài dòng, rắc rối và dựa trên callback (dễ dẫn đến Callback Hell).</p>
+<p><strong>Fetch API</strong> ra đời như một sự thay thế hiện đại:</p>
+<ul>
+<li>Dựa trên <strong>Promise</strong>.</li>
+<li>Cú pháp gọn gàng, giống tiếng Anh.</li>
+<li>Tích hợp sẵn trong mọi trình duyệt hiện đại (Chrome, Firefox, Safari&hellip;).</li>
+</ul>
+<h2 id="2-cú-pháp-cơ-bản-get-request">2. Cú pháp cơ bản (GET Request)</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;https://api.example.com/users&#39;</span>)
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">response</span> =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Fetch không reject khi lỗi HTTP (404, 500)
+</span></span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Bạn phải tự check thủ công
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">ok</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;Network response was not ok&#39;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>(); <span style="color:#75715e">// Chuyển đổi body sang JSON
+</span></span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">data</span> =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>))
+</span></span><span style="display:flex;"><span>  .<span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">error</span> =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#39;Fetch error:&#39;</span>, <span style="color:#a6e22e">error</span>));
+</span></span></code></pre></div><h2 id="3-dùng-với-asyncawait-khuyên-dùng">3. Dùng với Async/Await (Khuyên dùng)</h2>
+<p>Code sẽ trông &ldquo;đồng bộ&rdquo; và dễ đọc hơn rất nhiều.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getUser</span>(<span style="color:#a6e22e">id</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">`https://api.example.com/users/</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">ok</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">`HTTP error! status: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">status</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">user</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Lỗi gọi API: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="4-gửi-dữ-liệu-post-request">4. Gửi dữ liệu (POST Request)</h2>
+<p>Khi gửi dữ liệu (ví dụ Login), bạn cần thêm tham số thứ 2 là <code>options</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">loginData</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">username</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vtp&#34;</span>, <span style="color:#a6e22e">password</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;123&#34;</span> };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;https://api.example.com/login&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;POST&#39;</span>, <span style="color:#75715e">// Phương thức
+</span></span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;application/json&#39;</span> <span style="color:#75715e">// Báo cho server biết mình gửi JSON
+</span></span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">body</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">loginData</span>) <span style="color:#75715e">// Convert object JS sang chuỗi JSON
+</span></span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h2 id="5-fetch-vs-axios">5. Fetch vs Axios</h2>
+<p>Nhiều người hỏi: <em>&ldquo;Tại sao dùng thư viện Axios khi đã có Fetch?&rdquo;</em></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Đặc điểm</th>
+          <th style="text-align: left">Fetch API</th>
+          <th style="text-align: left">Axios</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Cài đặt</strong></td>
+          <td style="text-align: left">Có sẵn (Native)</td>
+          <td style="text-align: left">Phải cài (<code>npm install axios</code>)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>JSON parsing</strong></td>
+          <td style="text-align: left">Phải gọi <code>.json()</code></td>
+          <td style="text-align: left">Tự động convert</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Error Handling</strong></td>
+          <td style="text-align: left">Chỉ reject khi mất mạng</td>
+          <td style="text-align: left">Reject khi HTTP 4xx/5xx</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Timeout</strong></td>
+          <td style="text-align: left">Cần dùng <code>AbortController</code></td>
+          <td style="text-align: left">Có sẵn option <code>timeout</code></td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p><strong>Lời khuyên:</strong> Với các dự án nhỏ hoặc vừa, <strong>Fetch</strong> là quá đủ. Với các dự án Enterprise cần Interceptors (để tự động chèn Token) hay quản lý timeout phức tạp, <strong>Axios</strong> vẫn tiện hơn.</p>
+</blockquote>
+
+    </div>
+
+    <footer class="mt-12 text-muted text-sm">
+      <hr class="border-neutral-700 mb-4" />
+      <div>Đã đọc: 2 phút • Thẻ: JavaScript</div>
+    </footer>
+  </article>
+</main>
+
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Blog Lập Trình Mạng</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a><script>
+    const currentUrl = window.location.pathname;
+    document.querySelectorAll('.menu li a').forEach(link => {
+        if (link.getAttribute('href') === currentUrl || (link.getAttribute('href') !== '/' && currentUrl.startsWith(link.getAttribute('href')))) {
+            link.closest('li').classList.add('active');
+        }
+    });
+</script>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
