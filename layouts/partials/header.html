@@ -1,7 +1,7 @@
 {{/* Tailwind-based header override */}}
 <header class="bg-surface text-white">
   <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-3">
+    <a href="{{ "" | relLangURL }}" class="flex items-center gap-3">
       <div class="w-10 h-10 bg-accent rounded-md flex items-center justify-center shadow-md">
         <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
@@ -13,7 +13,7 @@
 
     <nav class="hidden md:flex items-center">
       {{ range .Site.Menus.main }}
-        <a href="{{ .URL }}" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">{{ .Name }}</a>
+        <a href="{{ .URL | relLangURL }}" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">{{ .Name }}</a>
       {{ end }}
     </nav>
 
