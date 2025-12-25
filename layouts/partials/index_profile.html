@@ -25,6 +25,12 @@
     <div class="posts-grid">
       {{ range first 6 (where .Site.RegularPages "Section" "blog") }}
       <article class="post-card">
+        {{ $img := or .Params.image .Params.cover.image }}
+        {{ if $img }}
+        <a href="{{ .Permalink }}" class="post-card-image-link">
+          <img class="post-card-image" src="{{ $img | absURL }}" alt="{{ .Title }}" loading="lazy">
+        </a>
+        {{ end }}
         <div class="post-card-content">
           <div class="post-meta-header">
             <time class="post-date">{{ .Date.Format "02 Jan 2006" }}</time>
