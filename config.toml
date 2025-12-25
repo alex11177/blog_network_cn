@@ -10,6 +10,9 @@ enableGitInfo = false
 buildFuture = true
 buildDrafts = false
 
+relativeURLs = true
+canonifyURLs = false
+
 [params]
   author = "Vương Trung Phiên"
   showReadingTime = true
