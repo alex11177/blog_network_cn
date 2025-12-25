@@ -1,26 +1,174 @@
-/* Make post-card cover images pop in front of the card. */
+/* Card polish, typography, and background enhancements. */
+:root {
+  --card-accent: #22d3ee;
+  --card-accent-strong: #7dd3fc;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 15% -10%, rgba(96, 165, 250, 0.16), transparent 60%),
+    radial-gradient(900px 500px at 90% 10%, rgba(34, 211, 238, 0.12), transparent 55%),
+    var(--bg-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.hero-title,
+.page-title,
+.post-card-title {
+  font-family: "Be Vietnam Pro", "Inter", system-ui, sans-serif;
+}
+
 .post-card {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(11, 18, 32, 0.98) 100%);
+  border: 1px solid rgba(96, 165, 250, 0.18);
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(3, 7, 18, 0.4);
   overflow: visible;
+  position: relative;
+}
+
+.post-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(3, 7, 18, 0.55);
+  border-color: rgba(34, 211, 238, 0.45);
 }
 
 .post-card-image-link {
   position: relative;
   z-index: 2;
-  margin: -20px 16px 0;
+  display: block;
+  overflow: hidden;
+  height: 220px;
+  margin: -22px 16px 0;
   border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0b1220;
   box-shadow: 0 18px 35px rgba(0, 0, 0, 0.45);
 }
 
 .post-card-image {
+  width: 100%;
+  height: 100%;
   border-radius: 14px;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 0.5s ease, filter 0.4s ease;
+  filter: saturate(1.05) contrast(1.05);
+}
+
+.post-card:hover .post-card-image {
+  transform: scale(1.06);
+  filter: saturate(1.1) contrast(1.08);
 }
 
 .post-card-content {
-  padding-top: 1.25rem;
+  padding: 1.25rem 1.5rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.post-meta-header {
+  align-self: flex-start;
+  background: rgba(2, 6, 23, 0.7);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  gap: 0.5rem;
+}
+
+.post-category {
+  background: rgba(34, 211, 238, 0.2);
+  color: var(--card-accent-strong);
+}
+
+.post-date {
+  color: #cbd5f5;
+}
+
+.post-card-title {
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+
+.post-card-title a:hover {
+  color: var(--card-accent-strong);
+}
+
+.post-excerpt {
+  color: #b6c2d9;
+}
+
+.post-card-footer {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.75rem;
+}
+
+.read-more-link {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.18), rgba(99, 102, 241, 0.18));
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  border-radius: 999px;
+  padding: 0.55rem 1.4rem;
+  color: var(--card-accent-strong);
+  text-decoration: none;
+  font-weight: 700;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.read-more-link:hover {
+  color: #ffffff;
+  border-color: rgba(34, 211, 238, 0.75);
+  box-shadow: 0 12px 24px rgba(34, 211, 238, 0.18);
+}
+
+.posts-grid .post-card {
+  animation: card-fade 0.7s ease both;
+}
+
+.posts-grid .post-card:nth-child(1) { animation-delay: 0.05s; }
+.posts-grid .post-card:nth-child(2) { animation-delay: 0.1s; }
+.posts-grid .post-card:nth-child(3) { animation-delay: 0.15s; }
+.posts-grid .post-card:nth-child(4) { animation-delay: 0.2s; }
+.posts-grid .post-card:nth-child(5) { animation-delay: 0.25s; }
+.posts-grid .post-card:nth-child(6) { animation-delay: 0.3s; }
+.posts-grid .post-card:nth-child(7) { animation-delay: 0.35s; }
+.posts-grid .post-card:nth-child(8) { animation-delay: 0.4s; }
+
+@keyframes card-fade {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .posts-grid .post-card {
+    animation: none;
+  }
 }
 
 @media (max-width: 768px) {
   .post-card-image-link {
-    margin: -12px 12px 0;
+    height: 180px;
+    margin: -14px 12px 0;
+  }
+
+  .post-card-content {
+    padding: 1rem 1.1rem 1.3rem;
+  }
+
+  .post-card-title {
+    font-size: 1.15rem;
   }
 }
