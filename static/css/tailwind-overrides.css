@@ -1,0 +1,24 @@
+/* Tailwind custom color utilities (replacement for Play CDN config). */
+.bg-surface {
+  background-color: #0b1220;
+}
+
+.bg-page {
+  background-color: #0f1724;
+}
+
+.bg-accent {
+  background-color: #60a5fa;
+}
+
+.text-accent {
+  color: #60a5fa;
+}
+
+.ring-accent {
+  --tw-ring-color: #60a5fa;
+}
+
+.focus\:ring-accent:focus {
+  --tw-ring-color: #60a5fa;
+}

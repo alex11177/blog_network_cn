@@ -1,6 +1,7 @@
 ---
 title: "Lập trình hướng đối tượng (OOP) trong Java: 4 trụ cột và Best Practices"
-image: "images/posts/oop-best-practices.webp"
+cover:
+  image: "images/posts/oop-best-practices.webp"
 date: 2025-12-23
 tags: ["Java", "OOP", "Design Patterns"]
 categories: ["Java", "Core"]

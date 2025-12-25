@@ -3,7 +3,8 @@
 title: "DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)"
 date: 2025-12-23
 tags: ["JavaScript", "DOM", "Frontend"]
-image: "images/posts/dom-manipulation.jpg"
+cover:
+  image: "images/posts/dom-manipulation.jpg"
 categories: ["JavaScript"]
 draft: false
 summary: "Trước khi dùng React hay Vue, bạn phải hiểu DOM. Bài viết này hướng dẫn cách thao tác phần tử HTML, lắng nghe sự kiện và tối ưu hiệu suất render mà không cần jQuery."

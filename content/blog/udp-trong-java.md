@@ -3,7 +3,8 @@
 title: "Lập trình UDP trong Java: Tốc độ trên hết (Fire and Forget)"
 date: 2025-12-23
 tags: ["Java", "UDP", "Network"]
-image: "images/posts/java-udp.png"
+cover:
+  image: "images/posts/java-udp.png"
 categories: ["Java", "Networking"]
 draft: false
 summary: "Khác với TCP, UDP là giao thức 'gửi rồi quên'. Tại sao lại dùng một giao thức không tin cậy? Cùng tìm hiểu cách implement UDP Client/Server trong Java."

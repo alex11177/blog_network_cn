@@ -2,27 +2,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<!-- Tailwind CDN (configured for production use) -->
+<!-- Tailwind CSS (prebuilt, production-safe) -->
 <script>
-	tailwind = {
-		config: {
-			darkMode: 'class',
-			theme: {
-				extend: {
-					colors: {
-						accent: '#60a5fa',
-						surface: '#0b1220',
-						page: '#0f1724',
-						muted: '#94a3b8'
-					}
-				}
-			}
-		}
-	}
 	// enable dark mode by default
 	document.documentElement.classList.add('dark')
 </script>
-<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+<link rel="stylesheet" href="{{ "css/tailwind-overrides.css" | relURL }}">
 
 <!-- Project custom CSS (overrides) -->
 <link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">

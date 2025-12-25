@@ -3,7 +3,7 @@
 <article class="post-card">
     {{ if .Params.image }}
     <a href="{{ .Permalink }}" class="post-card-image-link">
-        <img class="post-card-image" src="{{ .Params.image | relURL }}" alt="{{ .Title }}" loading="lazy">
+        <img class="post-card-image" src="{{ .Params.image | absURL }}" alt="{{ .Title }}" loading="lazy">
     </a>
     {{ end }}
     <div class="post-card-content">

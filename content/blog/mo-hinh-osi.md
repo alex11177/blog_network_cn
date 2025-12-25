@@ -1,7 +1,8 @@
 
 ---
 title: "Mô hình OSI: 7 tầng giao tiếp mạng mà mọi Developer cần biết"
-image: "images/posts/osi-model.jpg"
+cover:
+  image: "images/posts/osi-model.jpg"
 date: 2025-12-23
 tags: ["Mạng", "OSI", "Network"]
 categories: ["Networking"]

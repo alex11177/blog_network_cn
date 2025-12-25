@@ -1,6 +1,7 @@
 ---
 title: "JavaScript là gì? Từ Sripting đơn giản đến bá chủ Full-stack (2025)"
-image: "images/posts/javascript.png"
+cover:
+  image: "images/posts/javascript.png"
 date: 2025-12-23
 tags: ["JavaScript", "Frontend", "Fullstack"]
 categories: ["JavaScript"]
