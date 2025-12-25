@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>DOM on Blog Lập Trình Mạng</title><link>https://alex11177.github.io/blog_network_cn/tags/dom/</link><description>Recent content in DOM on Blog Lập Trình Mạng</description><generator>Hugo -- 0.153.0</generator><language>vi-vn</language><lastBuildDate>Tue, 23 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://alex11177.github.io/blog_network_cn/tags/dom/index.xml" rel="self" type="application/rss+xml"/><item><title>DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)</title><link>https://alex11177.github.io/blog_network_cn/blog/dom-javascript/</link><pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate><guid>https://alex11177.github.io/blog_network_cn/blog/dom-javascript/</guid><description>Trước khi dùng React hay Vue, bạn phải hiểu DOM. Bài viết này hướng dẫn cách thao tác phần tử HTML, lắng nghe sự kiện và tối ưu hiệu suất render mà không cần jQuery.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>DOM on Blog Lập Trình Mạng</title>
+    <link>https://alex11177.github.io/blog_network_cn/tags/dom/</link>
+    <description>Recent content in DOM on Blog Lập Trình Mạng</description>
+    <generator>Hugo -- 0.153.0</generator>
+    <language>vi-vn</language>
+    <lastBuildDate>Tue, 23 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://alex11177.github.io/blog_network_cn/tags/dom/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)</title>
+      <link>https://alex11177.github.io/blog_network_cn/blog/dom-javascript/</link>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://alex11177.github.io/blog_network_cn/blog/dom-javascript/</guid>
+      <description>Trước khi dùng React hay Vue, bạn phải hiểu DOM. Bài viết này hướng dẫn cách thao tác phần tử HTML, lắng nghe sự kiện và tối ưu hiệu suất render mà không cần jQuery.</description>
+    </item>
+  </channel>
+</rss>

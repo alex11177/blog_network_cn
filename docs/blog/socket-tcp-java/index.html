@@ -1,64 +1,379 @@
-<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Java Socket Programming: Xây dựng Chat Server đơn giản với TCP | Blog Lập Trình Mạng</title><meta name=keywords content="Java,Socket,TCP,Backend"><meta name=description content="Đi sâu vào lập trình mạng tầng thấp với Java Socket. Hướng dẫn từng bước xây dựng mô hình Client-Server giao tiếp hay chiều qua giao thức TCP tin cậy."><meta name=author content><link rel=canonical href=https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/><link crossorigin=anonymous href=/blog_network_cn/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css rel="preload stylesheet" as=style><link rel=icon href=https://alex11177.github.io/blog_network_cn/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://alex11177.github.io/blog_network_cn/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://alex11177.github.io/blog_network_cn/favicon-32x32.png><link rel=apple-touch-icon href=https://alex11177.github.io/blog_network_cn/apple-touch-icon.png><link rel=mask-icon href=https://alex11177.github.io/blog_network_cn/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}@media(prefers-color-scheme:light){.list::-webkit-scrollbar-thumb{border-color:var(--code-bg)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta name=viewport content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel=stylesheet><script>tailwind={config:{darkMode:"class",theme:{extend:{colors:{accent:"#60a5fa",surface:"#0b1220",page:"#0f1724",muted:"#94a3b8"}}}}},document.documentElement.classList.add("dark")</script><script src=https://cdn.tailwindcss.com></script><link rel=stylesheet href=/blog_network_cn/css/custom.css><meta property="og:url" content="https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/"><meta property="og:site_name" content="Blog Lập Trình Mạng"><meta property="og:title" content="Java Socket Programming: Xây dựng Chat Server đơn giản với TCP"><meta property="og:description" content="Đi sâu vào lập trình mạng tầng thấp với Java Socket. Hướng dẫn từng bước xây dựng mô hình Client-Server giao tiếp hay chiều qua giao thức TCP tin cậy."><meta property="og:locale" content="vi-vn"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2025-12-23T00:00:00+00:00"><meta property="article:modified_time" content="2025-12-23T00:00:00+00:00"><meta property="article:tag" content="Java"><meta property="article:tag" content="Socket"><meta property="article:tag" content="TCP"><meta property="article:tag" content="Backend"><meta name=twitter:card content="summary"><meta name=twitter:title content="Java Socket Programming: Xây dựng Chat Server đơn giản với TCP"><meta name=twitter:description content="Đi sâu vào lập trình mạng tầng thấp với Java Socket. Hướng dẫn từng bước xây dựng mô hình Client-Server giao tiếp hay chiều qua giao thức TCP tin cậy."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Blogs","item":"https://alex11177.github.io/blog_network_cn/blog/"},{"@type":"ListItem","position":2,"name":"Java Socket Programming: Xây dựng Chat Server đơn giản với TCP","item":"https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Java Socket Programming: Xây dựng Chat Server đơn giản với TCP","name":"Java Socket Programming: Xây dựng Chat Server đơn giản với TCP","description":"Đi sâu vào lập trình mạng tầng thấp với Java Socket. Hướng dẫn từng bước xây dựng mô hình Client-Server giao tiếp hay chiều qua giao thức TCP tin cậy.","keywords":["Java","Socket","TCP","Backend"],"articleBody":"TCP Socket là gì? TCP (Transmission Control Protocol) là giao thức hướng kết nối (connection-oriented). Trước khi truyền dữ liệu, nó bắt buộc phải thiết lập đường truyền (3-way handshake). Điều này đảm bảo:\nDữ liệu đến nơi đủ và đúng thứ tự. Không bị mất gói tin. Trong Java, chúng ta dùng gói java.net.\nXây dựng Server (Echo Server) Server sẽ lắng nghe ở một cổng (port), nhận tin nhắn từ Client và gửi phản hồi lại.\nimport java.io.*; import java.net.*; public class SimpleServer { public static void main(String[] args) { int port = 8080; try (ServerSocket serverSocket = new ServerSocket(port)) { System.out.println(\"Server đang chạy tại port \" + port + \"...\"); while (true) { // 1. Chấp nhận kết nối Socket socket = serverSocket.accept(); System.out.println(\"Client mới đã kết nối!\"); // 2. Tạo luồng Input/Output InputStream input = socket.getInputStream(); BufferedReader reader = new BufferedReader(new InputStreamReader(input)); OutputStream output = socket.getOutputStream(); PrintWriter writer = new PrintWriter(output, true); // 3. Đọc và phản hồi String message = reader.readLine(); System.out.println(\"Nhận được: \" + message); writer.println(\"Server xác nhận: \" + message); socket.close(); } } catch (IOException e) { e.printStackTrace(); } } } Xây dựng Client Client kết nối đến IP và Port của Server để gửi tin.\nimport java.io.*; import java.net.*; public class SimpleClient { public static void main(String[] args) { String hostname = \"localhost\"; int port = 8080; try (Socket socket = new Socket(hostname, port)) { // Gửi tin nhắn PrintWriter writer = new PrintWriter(socket.getOutputStream(), true); writer.println(\"Hello from Java Client!\"); // Đọc phản hồi BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream())); String response = reader.readLine(); System.out.println(response); } catch (IOException e) { e.printStackTrace(); } } } Giải thích luồng đi (Workflow) ServerSocket: Mở cổng 8080 chờ đợi. accept(): Server chặn (block) chương trình lại cho đến khi có ai đó kết nối. Client connect: Gửi yêu cầu bắt tay. IO Stream: Sau khi kết nối thành công, socket hoạt động như một “ống nước”. Bạn đổ dữ liệu vào đầu này (OutputStream), đầu kia hứng (InputStream). Ứng dụng thực tế Dù ngày nay chúng ta dùng HTTP (Spring Boot), nhưng Socket vẫn là nền tảng của:\nTrò chơi trực tuyến (Real-time Gaming). Ứng dụng chat. Database Driver (kết nối tới MySQL/Redis). ","wordCount":"366","inLanguage":"en","datePublished":"2025-12-23T00:00:00Z","dateModified":"2025-12-23T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/"},"publisher":{"@type":"Organization","name":"Blog Lập Trình Mạng","logo":{"@type":"ImageObject","url":"https://alex11177.github.io/blog_network_cn/favicon.ico"}}}</script></head><body id=top><header class="bg-surface text-white"><div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-10 h-10 bg-accent rounded-md flex items-center justify-center shadow-md"><svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none"><path d="M3 12h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="text-xl font-semibold leading-tight">Blog Lập Trình Mạng</div><div class="text-sm text-muted"></div></div></a><nav class="hidden md:flex items-center"><a href=/blog_network_cn/ class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Home</a>
-<a href=/blog_network_cn/blog/ class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Blog</a>
-<a href=/blog_network_cn/profile/ class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Profile</a></nav><div class=md:hidden><button class="p-2 rounded bg-transparent text-muted focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Open menu">☰</button></div></div></header><main class=main><main class="max-w-3xl mx-auto px-4 py-12"><article class="prose prose-invert lg:prose-lg"><header class=mb-6><h1 class="text-3xl font-extrabold text-white mb-2">Java Socket Programming: Xây dựng Chat Server đơn giản với TCP</h1><div class="text-muted text-sm">23 Dec 2025 • Java, Socket, TCP, Backend</div><img src=/images/posts/java-socket.png alt="Java Socket Programming: Xây dựng Chat Server đơn giản với TCP" class="mt-6 w-full h-64 object-cover rounded-lg shadow-lg"></header><div class="post-content text-gray-200"><h2 id=tcp-socket-là-gì>TCP Socket là gì?</h2><p><strong>TCP (Transmission Control Protocol)</strong> là giao thức hướng kết nối (connection-oriented). Trước khi truyền dữ liệu, nó bắt buộc phải thiết lập đường truyền (3-way handshake). Điều này đảm bảo:</p><ul><li>Dữ liệu đến nơi <strong>đủ và đúng thứ tự</strong>.</li><li>Không bị mất gói tin.</li></ul><p>Trong Java, chúng ta dùng gói <code>java.net</code>.</p><h2 id=xây-dựng-server-echo-server>Xây dựng Server (Echo Server)</h2><p>Server sẽ lắng nghe ở một cổng (port), nhận tin nhắn từ Client và gửi phản hồi lại.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#f92672>import</span> java.io.*;
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> java.net.*;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SimpleServer</span> {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>(String<span style=color:#f92672>[]</span> args) {
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> port <span style=color:#f92672>=</span> 8080;
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>try</span> (ServerSocket serverSocket <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ServerSocket(port)) {
-</span></span><span style=display:flex><span>            System.<span style=color:#a6e22e>out</span>.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;Server đang chạy tại port &#34;</span> <span style=color:#f92672>+</span> port <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;...&#34;</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>while</span> (<span style=color:#66d9ef>true</span>) {
-</span></span><span style=display:flex><span>                <span style=color:#75715e>// 1. Chấp nhận kết nối</span>
-</span></span><span style=display:flex><span>                Socket socket <span style=color:#f92672>=</span> serverSocket.<span style=color:#a6e22e>accept</span>();
-</span></span><span style=display:flex><span>                System.<span style=color:#a6e22e>out</span>.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;Client mới đã kết nối!&#34;</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>                <span style=color:#75715e>// 2. Tạo luồng Input/Output</span>
-</span></span><span style=display:flex><span>                InputStream input <span style=color:#f92672>=</span> socket.<span style=color:#a6e22e>getInputStream</span>();
-</span></span><span style=display:flex><span>                BufferedReader reader <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> BufferedReader(<span style=color:#66d9ef>new</span> InputStreamReader(input));
-</span></span><span style=display:flex><span>                
-</span></span><span style=display:flex><span>                OutputStream output <span style=color:#f92672>=</span> socket.<span style=color:#a6e22e>getOutputStream</span>();
-</span></span><span style=display:flex><span>                PrintWriter writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> PrintWriter(output, <span style=color:#66d9ef>true</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>                <span style=color:#75715e>// 3. Đọc và phản hồi</span>
-</span></span><span style=display:flex><span>                String message <span style=color:#f92672>=</span> reader.<span style=color:#a6e22e>readLine</span>();
-</span></span><span style=display:flex><span>                System.<span style=color:#a6e22e>out</span>.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;Nhận được: &#34;</span> <span style=color:#f92672>+</span> message);
-</span></span><span style=display:flex><span>                writer.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;Server xác nhận: &#34;</span> <span style=color:#f92672>+</span> message);
-</span></span><span style=display:flex><span>                
-</span></span><span style=display:flex><span>                socket.<span style=color:#a6e22e>close</span>();
-</span></span><span style=display:flex><span>            }
-</span></span><span style=display:flex><span>        } <span style=color:#66d9ef>catch</span> (IOException e) {
-</span></span><span style=display:flex><span>            e.<span style=color:#a6e22e>printStackTrace</span>();
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h2 id=xây-dựng-client>Xây dựng Client</h2><p>Client kết nối đến IP và Port của Server để gửi tin.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#f92672>import</span> java.io.*;
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> java.net.*;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SimpleClient</span> {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>(String<span style=color:#f92672>[]</span> args) {
-</span></span><span style=display:flex><span>        String hostname <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;localhost&#34;</span>;
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> port <span style=color:#f92672>=</span> 8080;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>try</span> (Socket socket <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Socket(hostname, port)) {
-</span></span><span style=display:flex><span>            <span style=color:#75715e>// Gửi tin nhắn</span>
-</span></span><span style=display:flex><span>            PrintWriter writer <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> PrintWriter(socket.<span style=color:#a6e22e>getOutputStream</span>(), <span style=color:#66d9ef>true</span>);
-</span></span><span style=display:flex><span>            writer.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;Hello from Java Client!&#34;</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>            <span style=color:#75715e>// Đọc phản hồi</span>
-</span></span><span style=display:flex><span>            BufferedReader reader <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> BufferedReader(<span style=color:#66d9ef>new</span> InputStreamReader(socket.<span style=color:#a6e22e>getInputStream</span>()));
-</span></span><span style=display:flex><span>            String response <span style=color:#f92672>=</span> reader.<span style=color:#a6e22e>readLine</span>();
-</span></span><span style=display:flex><span>            System.<span style=color:#a6e22e>out</span>.<span style=color:#a6e22e>println</span>(response);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        } <span style=color:#66d9ef>catch</span> (IOException e) {
-</span></span><span style=display:flex><span>            e.<span style=color:#a6e22e>printStackTrace</span>();
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h2 id=giải-thích-luồng-đi-workflow>Giải thích luồng đi (Workflow)</h2><ol><li><strong>ServerSocket</strong>: Mở cổng 8080 chờ đợi.</li><li><strong>accept()</strong>: Server chặn (block) chương trình lại cho đến khi có ai đó kết nối.</li><li><strong>Client connect</strong>: Gửi yêu cầu bắt tay.</li><li><strong>IO Stream</strong>: Sau khi kết nối thành công, <code>socket</code> hoạt động như một &ldquo;ống nước&rdquo;. Bạn đổ dữ liệu vào đầu này (OutputStream), đầu kia hứng (InputStream).</li></ol><h2 id=ứng-dụng-thực-tế>Ứng dụng thực tế</h2><p>Dù ngày nay chúng ta dùng HTTP (Spring Boot), nhưng <strong>Socket</strong> vẫn là nền tảng của:</p><ul><li>Trò chơi trực tuyến (Real-time Gaming).</li><li>Ứng dụng chat.</li><li>Database Driver (kết nối tới MySQL/Redis).</li></ul></div><footer class="mt-12 text-muted text-sm"><hr class="border-neutral-700 mb-4"><div>Đã đọc: 2 phút • Thẻ: Java, Networking</div></footer></article></main></main><footer class=footer><span>&copy; 2025 <a href=https://alex11177.github.io/blog_network_cn/>Blog Lập Trình Mạng</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
-</a><script>const currentUrl=window.location.pathname;document.querySelectorAll(".menu li a").forEach(e=>{(e.getAttribute("href")===currentUrl||e.getAttribute("href")!=="/"&&currentUrl.startsWith(e.getAttribute("href")))&&e.closest("li").classList.add("active")})</script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>const _themeToggle=document.getElementById("theme-toggle");_themeToggle&&_themeToggle.addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Java Socket Programming: Xây dựng Chat Server đơn giản với TCP | Blog Lập Trình Mạng</title>
+<meta name="keywords" content="Java, Socket, TCP, Backend">
+<meta name="description" content="Đi sâu vào lập trình mạng tầng thấp với Java Socket. Hướng dẫn từng bước xây dựng mô hình Client-Server giao tiếp hay chiều qua giao thức TCP tin cậy.">
+<meta name="author" content="">
+<link rel="canonical" href="https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/">
+<link crossorigin="anonymous" href="/blog_network_cn/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://alex11177.github.io/blog_network_cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://alex11177.github.io/blog_network_cn/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://alex11177.github.io/blog_network_cn/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://alex11177.github.io/blog_network_cn/apple-touch-icon.png">
+<link rel="mask-icon" href="https://alex11177.github.io/blog_network_cn/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+<script>
+	
+	document.documentElement.classList.add('dark')
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+<link rel="stylesheet" href="/blog_network_cn/css/tailwind-overrides.css">
+
+
+<link rel="stylesheet" href="/blog_network_cn/css/custom.css">
+<meta property="og:url" content="https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/">
+  <meta property="og:site_name" content="Blog Lập Trình Mạng">
+  <meta property="og:title" content="Java Socket Programming: Xây dựng Chat Server đơn giản với TCP">
+  <meta property="og:description" content="Đi sâu vào lập trình mạng tầng thấp với Java Socket. Hướng dẫn từng bước xây dựng mô hình Client-Server giao tiếp hay chiều qua giao thức TCP tin cậy.">
+  <meta property="og:locale" content="vi-vn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-12-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-23T00:00:00+00:00">
+    <meta property="article:tag" content="Java">
+    <meta property="article:tag" content="Socket">
+    <meta property="article:tag" content="TCP">
+    <meta property="article:tag" content="Backend">
+    <meta property="og:image" content="https://alex11177.github.io/blog_network_cn/images/posts/java-socket.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alex11177.github.io/blog_network_cn/images/posts/java-socket.png">
+<meta name="twitter:title" content="Java Socket Programming: Xây dựng Chat Server đơn giản với TCP">
+<meta name="twitter:description" content="Đi sâu vào lập trình mạng tầng thấp với Java Socket. Hướng dẫn từng bước xây dựng mô hình Client-Server giao tiếp hay chiều qua giao thức TCP tin cậy.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs",
+      "item": "https://alex11177.github.io/blog_network_cn/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Java Socket Programming: Xây dựng Chat Server đơn giản với TCP",
+      "item": "https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Java Socket Programming: Xây dựng Chat Server đơn giản với TCP",
+  "name": "Java Socket Programming: Xây dựng Chat Server đơn giản với TCP",
+  "description": "Đi sâu vào lập trình mạng tầng thấp với Java Socket. Hướng dẫn từng bước xây dựng mô hình Client-Server giao tiếp hay chiều qua giao thức TCP tin cậy.",
+  "keywords": [
+    "Java", "Socket", "TCP", "Backend"
+  ],
+  "articleBody": "TCP Socket là gì? TCP (Transmission Control Protocol) là giao thức hướng kết nối (connection-oriented). Trước khi truyền dữ liệu, nó bắt buộc phải thiết lập đường truyền (3-way handshake). Điều này đảm bảo:\nDữ liệu đến nơi đủ và đúng thứ tự. Không bị mất gói tin. Trong Java, chúng ta dùng gói java.net.\nXây dựng Server (Echo Server) Server sẽ lắng nghe ở một cổng (port), nhận tin nhắn từ Client và gửi phản hồi lại.\nimport java.io.*; import java.net.*; public class SimpleServer { public static void main(String[] args) { int port = 8080; try (ServerSocket serverSocket = new ServerSocket(port)) { System.out.println(\"Server đang chạy tại port \" + port + \"...\"); while (true) { // 1. Chấp nhận kết nối Socket socket = serverSocket.accept(); System.out.println(\"Client mới đã kết nối!\"); // 2. Tạo luồng Input/Output InputStream input = socket.getInputStream(); BufferedReader reader = new BufferedReader(new InputStreamReader(input)); OutputStream output = socket.getOutputStream(); PrintWriter writer = new PrintWriter(output, true); // 3. Đọc và phản hồi String message = reader.readLine(); System.out.println(\"Nhận được: \" + message); writer.println(\"Server xác nhận: \" + message); socket.close(); } } catch (IOException e) { e.printStackTrace(); } } } Xây dựng Client Client kết nối đến IP và Port của Server để gửi tin.\nimport java.io.*; import java.net.*; public class SimpleClient { public static void main(String[] args) { String hostname = \"localhost\"; int port = 8080; try (Socket socket = new Socket(hostname, port)) { // Gửi tin nhắn PrintWriter writer = new PrintWriter(socket.getOutputStream(), true); writer.println(\"Hello from Java Client!\"); // Đọc phản hồi BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream())); String response = reader.readLine(); System.out.println(response); } catch (IOException e) { e.printStackTrace(); } } } Giải thích luồng đi (Workflow) ServerSocket: Mở cổng 8080 chờ đợi. accept(): Server chặn (block) chương trình lại cho đến khi có ai đó kết nối. Client connect: Gửi yêu cầu bắt tay. IO Stream: Sau khi kết nối thành công, socket hoạt động như một “ống nước”. Bạn đổ dữ liệu vào đầu này (OutputStream), đầu kia hứng (InputStream). Ứng dụng thực tế Dù ngày nay chúng ta dùng HTTP (Spring Boot), nhưng Socket vẫn là nền tảng của:\nTrò chơi trực tuyến (Real-time Gaming). Ứng dụng chat. Database Driver (kết nối tới MySQL/Redis). ",
+  "wordCount" : "366",
+  "inLanguage": "en",
+  "image":"https://alex11177.github.io/blog_network_cn/images/posts/java-socket.png","datePublished": "2025-12-23T00:00:00Z",
+  "dateModified": "2025-12-23T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://alex11177.github.io/blog_network_cn/blog/socket-tcp-java/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Blog Lập Trình Mạng",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://alex11177.github.io/blog_network_cn/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    
+<header class="bg-surface text-white">
+  <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-accent rounded-md flex items-center justify-center shadow-md">
+        <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="text-xl font-semibold leading-tight">Blog Lập Trình Mạng</div>
+        <div class="text-sm text-muted"></div>
+      </div>
+    </a>
+
+    <nav class="hidden md:flex items-center">
+      
+        <a href="/blog_network_cn/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Home</a>
+      
+        <a href="/blog_network_cn/blog/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Blog</a>
+      
+        <a href="/blog_network_cn/profile/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Profile</a>
+      
+    </nav>
+
+    <div class="md:hidden">
+      <button class="p-2 rounded bg-transparent text-muted focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</header>
+<main class="main">
+<main class="max-w-3xl mx-auto px-4 py-12">
+  <article class="prose prose-invert lg:prose-lg">
+    <header class="mb-6">
+      <h1 class="text-3xl font-extrabold text-white mb-2">Java Socket Programming: Xây dựng Chat Server đơn giản với TCP</h1>
+      <div class="text-muted text-sm">23 Dec 2025 • Java, Socket, TCP, Backend</div>
+      
+      <img src="https://alex11177.github.io/blog_network_cn/images/posts/java-socket.png" alt="Java Socket Programming: Xây dựng Chat Server đơn giản với TCP" class="mt-6 w-full h-64 object-cover rounded-lg shadow-lg">
+      
+    </header>
+
+    <div class="post-content text-gray-200">
+      <h2 id="tcp-socket-là-gì">TCP Socket là gì?</h2>
+<p><strong>TCP (Transmission Control Protocol)</strong> là giao thức hướng kết nối (connection-oriented). Trước khi truyền dữ liệu, nó bắt buộc phải thiết lập đường truyền (3-way handshake). Điều này đảm bảo:</p>
+<ul>
+<li>Dữ liệu đến nơi <strong>đủ và đúng thứ tự</strong>.</li>
+<li>Không bị mất gói tin.</li>
+</ul>
+<p>Trong Java, chúng ta dùng gói <code>java.net</code>.</p>
+<h2 id="xây-dựng-server-echo-server">Xây dựng Server (Echo Server)</h2>
+<p>Server sẽ lắng nghe ở một cổng (port), nhận tin nhắn từ Client và gửi phản hồi lại.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.*;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.*;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SimpleServer</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> port <span style="color:#f92672">=</span> 8080;
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> (ServerSocket serverSocket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ServerSocket(port)) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Server đang chạy tại port &#34;</span> <span style="color:#f92672">+</span> port <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;...&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 1. Chấp nhận kết nối</span>
+</span></span><span style="display:flex;"><span>                Socket socket <span style="color:#f92672">=</span> serverSocket.<span style="color:#a6e22e">accept</span>();
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Client mới đã kết nối!&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 2. Tạo luồng Input/Output</span>
+</span></span><span style="display:flex;"><span>                InputStream input <span style="color:#f92672">=</span> socket.<span style="color:#a6e22e">getInputStream</span>();
+</span></span><span style="display:flex;"><span>                BufferedReader reader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader(<span style="color:#66d9ef">new</span> InputStreamReader(input));
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>                OutputStream output <span style="color:#f92672">=</span> socket.<span style="color:#a6e22e">getOutputStream</span>();
+</span></span><span style="display:flex;"><span>                PrintWriter writer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PrintWriter(output, <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 3. Đọc và phản hồi</span>
+</span></span><span style="display:flex;"><span>                String message <span style="color:#f92672">=</span> reader.<span style="color:#a6e22e">readLine</span>();
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Nhận được: &#34;</span> <span style="color:#f92672">+</span> message);
+</span></span><span style="display:flex;"><span>                writer.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Server xác nhận: &#34;</span> <span style="color:#f92672">+</span> message);
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>                socket.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="xây-dựng-client">Xây dựng Client</h2>
+<p>Client kết nối đến IP và Port của Server để gửi tin.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.*;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.*;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SimpleClient</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        String hostname <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;localhost&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> port <span style="color:#f92672">=</span> 8080;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> (Socket socket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Socket(hostname, port)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Gửi tin nhắn</span>
+</span></span><span style="display:flex;"><span>            PrintWriter writer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PrintWriter(socket.<span style="color:#a6e22e">getOutputStream</span>(), <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>            writer.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Hello from Java Client!&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Đọc phản hồi</span>
+</span></span><span style="display:flex;"><span>            BufferedReader reader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader(<span style="color:#66d9ef">new</span> InputStreamReader(socket.<span style="color:#a6e22e">getInputStream</span>()));
+</span></span><span style="display:flex;"><span>            String response <span style="color:#f92672">=</span> reader.<span style="color:#a6e22e">readLine</span>();
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(response);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="giải-thích-luồng-đi-workflow">Giải thích luồng đi (Workflow)</h2>
+<ol>
+<li><strong>ServerSocket</strong>: Mở cổng 8080 chờ đợi.</li>
+<li><strong>accept()</strong>: Server chặn (block) chương trình lại cho đến khi có ai đó kết nối.</li>
+<li><strong>Client connect</strong>: Gửi yêu cầu bắt tay.</li>
+<li><strong>IO Stream</strong>: Sau khi kết nối thành công, <code>socket</code> hoạt động như một &ldquo;ống nước&rdquo;. Bạn đổ dữ liệu vào đầu này (OutputStream), đầu kia hứng (InputStream).</li>
+</ol>
+<h2 id="ứng-dụng-thực-tế">Ứng dụng thực tế</h2>
+<p>Dù ngày nay chúng ta dùng HTTP (Spring Boot), nhưng <strong>Socket</strong> vẫn là nền tảng của:</p>
+<ul>
+<li>Trò chơi trực tuyến (Real-time Gaming).</li>
+<li>Ứng dụng chat.</li>
+<li>Database Driver (kết nối tới MySQL/Redis).</li>
+</ul>
+
+    </div>
+
+    <footer class="mt-12 text-muted text-sm">
+      <hr class="border-neutral-700 mb-4" />
+      <div>Đã đọc: 2 phút • Thẻ: Java, Networking</div>
+    </footer>
+  </article>
+</main>
+
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://alex11177.github.io/blog_network_cn/">Blog Lập Trình Mạng</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a><script>
+    const currentUrl = window.location.pathname;
+    document.querySelectorAll('.menu li a').forEach(link => {
+        if (link.getAttribute('href') === currentUrl || (link.getAttribute('href') !== '/' && currentUrl.startsWith(link.getAttribute('href')))) {
+            link.closest('li').classList.add('active');
+        }
+    });
+</script>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    const _themeToggle = document.getElementById("theme-toggle");
+    if (_themeToggle) {
+        _themeToggle.addEventListener("click", () => {
+            const html = document.querySelector("html");
+            if (html.dataset.theme === "dark") {
+                html.dataset.theme = 'light';
+                localStorage.setItem("pref-theme", 'light');
+            } else {
+                html.dataset.theme = 'dark';
+                localStorage.setItem("pref-theme", 'dark');
+            }
+        });
+    }
+
+</script>
+</body>
+
+</html>

@@ -1,41 +1,369 @@
-<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS) | Blog Lập Trình Mạng</title><meta name=keywords content="JavaScript,DOM,Frontend"><meta name=description content="Trước khi dùng React hay Vue, bạn phải hiểu DOM. Bài viết này hướng dẫn cách thao tác phần tử HTML, lắng nghe sự kiện và tối ưu hiệu suất render mà không cần jQuery."><meta name=author content><link rel=canonical href=https://alex11177.github.io/blog_network_cn/blog/dom-javascript/><link crossorigin=anonymous href=/blog_network_cn/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css rel="preload stylesheet" as=style><link rel=icon href=https://alex11177.github.io/blog_network_cn/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://alex11177.github.io/blog_network_cn/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://alex11177.github.io/blog_network_cn/favicon-32x32.png><link rel=apple-touch-icon href=https://alex11177.github.io/blog_network_cn/apple-touch-icon.png><link rel=mask-icon href=https://alex11177.github.io/blog_network_cn/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://alex11177.github.io/blog_network_cn/blog/dom-javascript/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}@media(prefers-color-scheme:light){.list::-webkit-scrollbar-thumb{border-color:var(--code-bg)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta name=viewport content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel=stylesheet><script>tailwind={config:{darkMode:"class",theme:{extend:{colors:{accent:"#60a5fa",surface:"#0b1220",page:"#0f1724",muted:"#94a3b8"}}}}},document.documentElement.classList.add("dark")</script><script src=https://cdn.tailwindcss.com></script><link rel=stylesheet href=/blog_network_cn/css/custom.css><meta property="og:url" content="https://alex11177.github.io/blog_network_cn/blog/dom-javascript/"><meta property="og:site_name" content="Blog Lập Trình Mạng"><meta property="og:title" content="DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)"><meta property="og:description" content="Trước khi dùng React hay Vue, bạn phải hiểu DOM. Bài viết này hướng dẫn cách thao tác phần tử HTML, lắng nghe sự kiện và tối ưu hiệu suất render mà không cần jQuery."><meta property="og:locale" content="vi-vn"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2025-12-23T00:00:00+00:00"><meta property="article:modified_time" content="2025-12-23T00:00:00+00:00"><meta property="article:tag" content="JavaScript"><meta property="article:tag" content="DOM"><meta property="article:tag" content="Frontend"><meta name=twitter:card content="summary"><meta name=twitter:title content="DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)"><meta name=twitter:description content="Trước khi dùng React hay Vue, bạn phải hiểu DOM. Bài viết này hướng dẫn cách thao tác phần tử HTML, lắng nghe sự kiện và tối ưu hiệu suất render mà không cần jQuery."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Blogs","item":"https://alex11177.github.io/blog_network_cn/blog/"},{"@type":"ListItem","position":2,"name":"DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)","item":"https://alex11177.github.io/blog_network_cn/blog/dom-javascript/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)","name":"DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)","description":"Trước khi dùng React hay Vue, bạn phải hiểu DOM. Bài viết này hướng dẫn cách thao tác phần tử HTML, lắng nghe sự kiện và tối ưu hiệu suất render mà không cần jQuery.","keywords":["JavaScript","DOM","Frontend"],"articleBody":"1. DOM là gì? (Document Object Model) Khi trình duyệt tải một trang web, nó chuyển đổi HTML thành một cấu trúc cây gọi là DOM. JavaScript không hiểu HTML, nó hiểu DOM. DOM chính là API cầu nối để JS có thể:\nThay đổi nội dung trang web. Thay đổi cấu trúc và style. Phản hồi lại hành động người dùng. 2. Truy vấn phần tử (Selecting Elements) Quên document.getElementById hay getElementsByClassName đi. Trong JS hiện đại, 99% trường hợp bạn chỉ cần 2 hàm này:\ndocument.querySelector(selector): Trả về phần tử đầu tiên tìm thấy. document.querySelectorAll(selector): Trả về một NodeList chứa tất cả phần tử tìm thấy. Ví dụ:\nconst mainTitle = document.querySelector('#main-title'); // ID const buttons = document.querySelectorAll('.btn-primary'); // Class const listItems = document.querySelectorAll('ul \u003e li'); // CSS Selector phức tạp Lưu ý: querySelectorAll trả về NodeList, không phải Array. Để dùng map, filter, hãy convert nó: Array.from(buttons).\n3. Thao tác nội dung và Style Sửa nội dung textContent: An toàn, nhanh (khuyên dùng). innerHTML: Mạnh nhưng nguy hiểm (dễ dính lỗi XSS nếu render user input). const box = document.querySelector('.box'); box.textContent = 'Hello World'; Sửa Style Đừng sửa từng dòng style bằng JS (element.style.color = 'red'). Hãy thêm/bớt Class để tận dụng CSS.\n// Bad practice box.style.backgroundColor = 'red'; box.style.padding = '20px'; // Good practice box.classList.add('active'); // CSS: .active { background: red; padding: 20px; } box.classList.toggle('hidden'); 4. Xử lý sự kiện (Event Handling) Sử dụng addEventListener là chuẩn mực vàng.\nconst btn = document.querySelector('#submit-btn'); btn.addEventListener('click', (event) =\u003e { event.preventDefault(); // Ngăn form reload console.log('Button clicked!', event.target); }); Kỹ thuật Event Delegation (Nâng cao) Giả sử bạn có 1 danh sách với 1000 thẻ . Đừng gán 1000 event listener cho từng thẻ . Hãy gán 1 cái cho thẻ cha .\ndocument.querySelector('#my-list').addEventListener('click', (e) =\u003e { // Kiểm tra xem user có click vào thẻ li không if (e.target.matches('li')) { console.log('Clicked text:', e.target.textContent); } }); Lợi ích: Tiết kiệm bộ nhớ cực lớn và code gọn hơn.\n5. Tạo và thêm phần tử mới Cách tạo DOM element “sạch” và an toàn:\n// 1. Tạo phần tử const newDiv = document.createElement('div'); // 2. Gán thuộc tính newDiv.className = 'notification'; newDiv.textContent = 'Lưu thành công!'; // 3. Gắn vào DOM document.body.appendChild(newDiv); Kết luận Frameworks như React sinh ra để bạn đỡ khổ sở với DOM API. Tuy nhiên, hiểu rõ DOM giúp bạn:\nDebug tốt hơn khi Framework gặp lỗi. Tối ưu hiệu năng khi biết cái gì đang xảy ra dưới nắp capo. Viết các thư viện nhỏ hoặc landing page nhẹ mà không cần bundle React 200KB. ","wordCount":"431","inLanguage":"en","datePublished":"2025-12-23T00:00:00Z","dateModified":"2025-12-23T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://alex11177.github.io/blog_network_cn/blog/dom-javascript/"},"publisher":{"@type":"Organization","name":"Blog Lập Trình Mạng","logo":{"@type":"ImageObject","url":"https://alex11177.github.io/blog_network_cn/favicon.ico"}}}</script></head><body id=top><header class="bg-surface text-white"><div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between"><a href=/ class="flex items-center gap-3"><div class="w-10 h-10 bg-accent rounded-md flex items-center justify-center shadow-md"><svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none"><path d="M3 12h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="text-xl font-semibold leading-tight">Blog Lập Trình Mạng</div><div class="text-sm text-muted"></div></div></a><nav class="hidden md:flex items-center"><a href=/blog_network_cn/ class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Home</a>
-<a href=/blog_network_cn/blog/ class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Blog</a>
-<a href=/blog_network_cn/profile/ class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Profile</a></nav><div class=md:hidden><button class="p-2 rounded bg-transparent text-muted focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Open menu">☰</button></div></div></header><main class=main><main class="max-w-3xl mx-auto px-4 py-12"><article class="prose prose-invert lg:prose-lg"><header class=mb-6><h1 class="text-3xl font-extrabold text-white mb-2">DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)</h1><div class="text-muted text-sm">23 Dec 2025 • JavaScript, DOM, Frontend</div><img src=/images/posts/dom-manipulation.jpg alt="DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)" class="mt-6 w-full h-64 object-cover rounded-lg shadow-lg"></header><div class="post-content text-gray-200"><h2 id=1-dom-là-gì-document-object-model>1. DOM là gì? (Document Object Model)</h2><p>Khi trình duyệt tải một trang web, nó chuyển đổi HTML thành một cấu trúc cây gọi là <strong>DOM</strong>.
-JavaScript không hiểu HTML, nó hiểu DOM. DOM chính là API cầu nối để JS có thể:</p><ul><li>Thay đổi nội dung trang web.</li><li>Thay đổi cấu trúc và style.</li><li>Phản hồi lại hành động người dùng.</li></ul><h2 id=2-truy-vấn-phần-tử-selecting-elements>2. Truy vấn phần tử (Selecting Elements)</h2><p>Quên <code>document.getElementById</code> hay <code>getElementsByClassName</code> đi. Trong JS hiện đại, 99% trường hợp bạn chỉ cần 2 hàm này:</p><ol><li><strong><code>document.querySelector(selector)</code></strong>: Trả về phần tử đầu tiên tìm thấy.</li><li><strong><code>document.querySelectorAll(selector)</code></strong>: Trả về một <strong>NodeList</strong> chứa tất cả phần tử tìm thấy.</li></ol><p><strong>Ví dụ:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>mainTitle</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;#main-title&#39;</span>); <span style=color:#75715e>// ID
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>buttons</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>querySelectorAll</span>(<span style=color:#e6db74>&#39;.btn-primary&#39;</span>); <span style=color:#75715e>// Class
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>listItems</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>querySelectorAll</span>(<span style=color:#e6db74>&#39;ul &gt; li&#39;</span>); <span style=color:#75715e>// CSS Selector phức tạp
-</span></span></span></code></pre></div><blockquote><p><strong>Lưu ý:</strong> <code>querySelectorAll</code> trả về NodeList, không phải Array. Để dùng <code>map</code>, <code>filter</code>, hãy convert nó: <code>Array.from(buttons)</code>.</p></blockquote><h2 id=3-thao-tác-nội-dung-và-style>3. Thao tác nội dung và Style</h2><h3 id=sửa-nội-dung>Sửa nội dung</h3><ul><li><code>textContent</code>: An toàn, nhanh (khuyên dùng).</li><li><code>innerHTML</code>: Mạnh nhưng nguy hiểm (dễ dính lỗi XSS nếu render user input).</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>box</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;.box&#39;</span>);
-</span></span><span style=display:flex><span><span style=color:#a6e22e>box</span>.<span style=color:#a6e22e>textContent</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;Hello World&#39;</span>; 
-</span></span></code></pre></div><h3 id=sửa-style>Sửa Style</h3><p>Đừng sửa từng dòng style bằng JS (<code>element.style.color = 'red'</code>). Hãy thêm/bớt <strong>Class</strong> để tận dụng CSS.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// Bad practice
-</span></span></span><span style=display:flex><span><span style=color:#a6e22e>box</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>backgroundColor</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;red&#39;</span>;
-</span></span><span style=display:flex><span><span style=color:#a6e22e>box</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>padding</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;20px&#39;</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// Good practice
-</span></span></span><span style=display:flex><span><span style=color:#a6e22e>box</span>.<span style=color:#a6e22e>classList</span>.<span style=color:#a6e22e>add</span>(<span style=color:#e6db74>&#39;active&#39;</span>); <span style=color:#75715e>// CSS: .active { background: red; padding: 20px; }
-</span></span></span><span style=display:flex><span><span style=color:#a6e22e>box</span>.<span style=color:#a6e22e>classList</span>.<span style=color:#a6e22e>toggle</span>(<span style=color:#e6db74>&#39;hidden&#39;</span>);
-</span></span></code></pre></div><h2 id=4-xử-lý-sự-kiện-event-handling>4. Xử lý sự kiện (Event Handling)</h2><p>Sử dụng <code>addEventListener</code> là chuẩn mực vàng.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>btn</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;#submit-btn&#39;</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>btn</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;click&#39;</span>, (<span style=color:#a6e22e>event</span>) =&gt; {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>preventDefault</span>(); <span style=color:#75715e>// Ngăn form reload
-</span></span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Button clicked!&#39;</span>, <span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>target</span>);
-</span></span><span style=display:flex><span>});
-</span></span></code></pre></div><h3 id=kỹ-thuật-event-delegation-nâng-cao>Kỹ thuật Event Delegation (Nâng cao)</h3><p>Giả sử bạn có 1 danh sách <code>&lt;ul></code> với 1000 thẻ <code>&lt;li></code>. Đừng gán 1000 event listener cho từng thẻ <code>&lt;li></code>. Hãy gán 1 cái cho thẻ cha <code>&lt;ul></code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span>document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;#my-list&#39;</span>).<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;click&#39;</span>, (<span style=color:#a6e22e>e</span>) =&gt; {
-</span></span><span style=display:flex><span>    <span style=color:#75715e>// Kiểm tra xem user có click vào thẻ li không
-</span></span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>target</span>.<span style=color:#a6e22e>matches</span>(<span style=color:#e6db74>&#39;li&#39;</span>)) {
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Clicked text:&#39;</span>, <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>target</span>.<span style=color:#a6e22e>textContent</span>);
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>});
-</span></span></code></pre></div><p><strong>Lợi ích:</strong> Tiết kiệm bộ nhớ cực lớn và code gọn hơn.</p><h2 id=5-tạo-và-thêm-phần-tử-mới>5. Tạo và thêm phần tử mới</h2><p>Cách tạo DOM element &ldquo;sạch&rdquo; và an toàn:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// 1. Tạo phần tử
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newDiv</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>createElement</span>(<span style=color:#e6db74>&#39;div&#39;</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// 2. Gán thuộc tính
-</span></span></span><span style=display:flex><span><span style=color:#a6e22e>newDiv</span>.<span style=color:#a6e22e>className</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;notification&#39;</span>;
-</span></span><span style=display:flex><span><span style=color:#a6e22e>newDiv</span>.<span style=color:#a6e22e>textContent</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;Lưu thành công!&#39;</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// 3. Gắn vào DOM
-</span></span></span><span style=display:flex><span>document.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>appendChild</span>(<span style=color:#a6e22e>newDiv</span>);
-</span></span></code></pre></div><h2 id=kết-luận>Kết luận</h2><p>Frameworks như React sinh ra để bạn đỡ khổ sở với DOM API. Tuy nhiên, hiểu rõ DOM giúp bạn:</p><ol><li>Debug tốt hơn khi Framework gặp lỗi.</li><li>Tối ưu hiệu năng khi biết cái gì đang xảy ra dưới nắp capo.</li><li>Viết các thư viện nhỏ hoặc landing page nhẹ mà không cần bundle React 200KB.</li></ol></div><footer class="mt-12 text-muted text-sm"><hr class="border-neutral-700 mb-4"><div>Đã đọc: 3 phút • Thẻ: JavaScript</div></footer></article></main></main><footer class=footer><span>&copy; 2025 <a href=https://alex11177.github.io/blog_network_cn/>Blog Lập Trình Mạng</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
-</a><script>const currentUrl=window.location.pathname;document.querySelectorAll(".menu li a").forEach(e=>{(e.getAttribute("href")===currentUrl||e.getAttribute("href")!=="/"&&currentUrl.startsWith(e.getAttribute("href")))&&e.closest("li").classList.add("active")})</script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>const _themeToggle=document.getElementById("theme-toggle");_themeToggle&&_themeToggle.addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS) | Blog Lập Trình Mạng</title>
+<meta name="keywords" content="JavaScript, DOM, Frontend">
+<meta name="description" content="Trước khi dùng React hay Vue, bạn phải hiểu DOM. Bài viết này hướng dẫn cách thao tác phần tử HTML, lắng nghe sự kiện và tối ưu hiệu suất render mà không cần jQuery.">
+<meta name="author" content="">
+<link rel="canonical" href="https://alex11177.github.io/blog_network_cn/blog/dom-javascript/">
+<link crossorigin="anonymous" href="/blog_network_cn/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://alex11177.github.io/blog_network_cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://alex11177.github.io/blog_network_cn/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://alex11177.github.io/blog_network_cn/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://alex11177.github.io/blog_network_cn/apple-touch-icon.png">
+<link rel="mask-icon" href="https://alex11177.github.io/blog_network_cn/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://alex11177.github.io/blog_network_cn/blog/dom-javascript/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+<script>
+	
+	document.documentElement.classList.add('dark')
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+<link rel="stylesheet" href="/blog_network_cn/css/tailwind-overrides.css">
+
+
+<link rel="stylesheet" href="/blog_network_cn/css/custom.css">
+<meta property="og:url" content="https://alex11177.github.io/blog_network_cn/blog/dom-javascript/">
+  <meta property="og:site_name" content="Blog Lập Trình Mạng">
+  <meta property="og:title" content="DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)">
+  <meta property="og:description" content="Trước khi dùng React hay Vue, bạn phải hiểu DOM. Bài viết này hướng dẫn cách thao tác phần tử HTML, lắng nghe sự kiện và tối ưu hiệu suất render mà không cần jQuery.">
+  <meta property="og:locale" content="vi-vn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-12-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-23T00:00:00+00:00">
+    <meta property="article:tag" content="JavaScript">
+    <meta property="article:tag" content="DOM">
+    <meta property="article:tag" content="Frontend">
+    <meta property="og:image" content="https://alex11177.github.io/blog_network_cn/images/posts/dom-manipulation.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alex11177.github.io/blog_network_cn/images/posts/dom-manipulation.jpg">
+<meta name="twitter:title" content="DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)">
+<meta name="twitter:description" content="Trước khi dùng React hay Vue, bạn phải hiểu DOM. Bài viết này hướng dẫn cách thao tác phần tử HTML, lắng nghe sự kiện và tối ưu hiệu suất render mà không cần jQuery.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs",
+      "item": "https://alex11177.github.io/blog_network_cn/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)",
+      "item": "https://alex11177.github.io/blog_network_cn/blog/dom-javascript/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)",
+  "name": "DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)",
+  "description": "Trước khi dùng React hay Vue, bạn phải hiểu DOM. Bài viết này hướng dẫn cách thao tác phần tử HTML, lắng nghe sự kiện và tối ưu hiệu suất render mà không cần jQuery.",
+  "keywords": [
+    "JavaScript", "DOM", "Frontend"
+  ],
+  "articleBody": "1. DOM là gì? (Document Object Model) Khi trình duyệt tải một trang web, nó chuyển đổi HTML thành một cấu trúc cây gọi là DOM. JavaScript không hiểu HTML, nó hiểu DOM. DOM chính là API cầu nối để JS có thể:\nThay đổi nội dung trang web. Thay đổi cấu trúc và style. Phản hồi lại hành động người dùng. 2. Truy vấn phần tử (Selecting Elements) Quên document.getElementById hay getElementsByClassName đi. Trong JS hiện đại, 99% trường hợp bạn chỉ cần 2 hàm này:\ndocument.querySelector(selector): Trả về phần tử đầu tiên tìm thấy. document.querySelectorAll(selector): Trả về một NodeList chứa tất cả phần tử tìm thấy. Ví dụ:\nconst mainTitle = document.querySelector('#main-title'); // ID const buttons = document.querySelectorAll('.btn-primary'); // Class const listItems = document.querySelectorAll('ul \u003e li'); // CSS Selector phức tạp Lưu ý: querySelectorAll trả về NodeList, không phải Array. Để dùng map, filter, hãy convert nó: Array.from(buttons).\n3. Thao tác nội dung và Style Sửa nội dung textContent: An toàn, nhanh (khuyên dùng). innerHTML: Mạnh nhưng nguy hiểm (dễ dính lỗi XSS nếu render user input). const box = document.querySelector('.box'); box.textContent = 'Hello World'; Sửa Style Đừng sửa từng dòng style bằng JS (element.style.color = 'red'). Hãy thêm/bớt Class để tận dụng CSS.\n// Bad practice box.style.backgroundColor = 'red'; box.style.padding = '20px'; // Good practice box.classList.add('active'); // CSS: .active { background: red; padding: 20px; } box.classList.toggle('hidden'); 4. Xử lý sự kiện (Event Handling) Sử dụng addEventListener là chuẩn mực vàng.\nconst btn = document.querySelector('#submit-btn'); btn.addEventListener('click', (event) =\u003e { event.preventDefault(); // Ngăn form reload console.log('Button clicked!', event.target); }); Kỹ thuật Event Delegation (Nâng cao) Giả sử bạn có 1 danh sách với 1000 thẻ . Đừng gán 1000 event listener cho từng thẻ . Hãy gán 1 cái cho thẻ cha .\ndocument.querySelector('#my-list').addEventListener('click', (e) =\u003e { // Kiểm tra xem user có click vào thẻ li không if (e.target.matches('li')) { console.log('Clicked text:', e.target.textContent); } }); Lợi ích: Tiết kiệm bộ nhớ cực lớn và code gọn hơn.\n5. Tạo và thêm phần tử mới Cách tạo DOM element “sạch” và an toàn:\n// 1. Tạo phần tử const newDiv = document.createElement('div'); // 2. Gán thuộc tính newDiv.className = 'notification'; newDiv.textContent = 'Lưu thành công!'; // 3. Gắn vào DOM document.body.appendChild(newDiv); Kết luận Frameworks như React sinh ra để bạn đỡ khổ sở với DOM API. Tuy nhiên, hiểu rõ DOM giúp bạn:\nDebug tốt hơn khi Framework gặp lỗi. Tối ưu hiệu năng khi biết cái gì đang xảy ra dưới nắp capo. Viết các thư viện nhỏ hoặc landing page nhẹ mà không cần bundle React 200KB. ",
+  "wordCount" : "431",
+  "inLanguage": "en",
+  "image":"https://alex11177.github.io/blog_network_cn/images/posts/dom-manipulation.jpg","datePublished": "2025-12-23T00:00:00Z",
+  "dateModified": "2025-12-23T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://alex11177.github.io/blog_network_cn/blog/dom-javascript/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Blog Lập Trình Mạng",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://alex11177.github.io/blog_network_cn/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    
+<header class="bg-surface text-white">
+  <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-accent rounded-md flex items-center justify-center shadow-md">
+        <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="text-xl font-semibold leading-tight">Blog Lập Trình Mạng</div>
+        <div class="text-sm text-muted"></div>
+      </div>
+    </a>
+
+    <nav class="hidden md:flex items-center">
+      
+        <a href="/blog_network_cn/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Home</a>
+      
+        <a href="/blog_network_cn/blog/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Blog</a>
+      
+        <a href="/blog_network_cn/profile/" class="ml-6 text-sm text-muted hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded">Profile</a>
+      
+    </nav>
+
+    <div class="md:hidden">
+      <button class="p-2 rounded bg-transparent text-muted focus:outline-none focus:ring-2 focus:ring-accent" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</header>
+<main class="main">
+<main class="max-w-3xl mx-auto px-4 py-12">
+  <article class="prose prose-invert lg:prose-lg">
+    <header class="mb-6">
+      <h1 class="text-3xl font-extrabold text-white mb-2">DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)</h1>
+      <div class="text-muted text-sm">23 Dec 2025 • JavaScript, DOM, Frontend</div>
+      
+      <img src="https://alex11177.github.io/blog_network_cn/images/posts/dom-manipulation.jpg" alt="DOM Manipulation: Làm chủ giao diện Web với JavaScript thuần (Vanilla JS)" class="mt-6 w-full h-64 object-cover rounded-lg shadow-lg">
+      
+    </header>
+
+    <div class="post-content text-gray-200">
+      <h2 id="1-dom-là-gì-document-object-model">1. DOM là gì? (Document Object Model)</h2>
+<p>Khi trình duyệt tải một trang web, nó chuyển đổi HTML thành một cấu trúc cây gọi là <strong>DOM</strong>.
+JavaScript không hiểu HTML, nó hiểu DOM. DOM chính là API cầu nối để JS có thể:</p>
+<ul>
+<li>Thay đổi nội dung trang web.</li>
+<li>Thay đổi cấu trúc và style.</li>
+<li>Phản hồi lại hành động người dùng.</li>
+</ul>
+<h2 id="2-truy-vấn-phần-tử-selecting-elements">2. Truy vấn phần tử (Selecting Elements)</h2>
+<p>Quên <code>document.getElementById</code> hay <code>getElementsByClassName</code> đi. Trong JS hiện đại, 99% trường hợp bạn chỉ cần 2 hàm này:</p>
+<ol>
+<li><strong><code>document.querySelector(selector)</code></strong>: Trả về phần tử đầu tiên tìm thấy.</li>
+<li><strong><code>document.querySelectorAll(selector)</code></strong>: Trả về một <strong>NodeList</strong> chứa tất cả phần tử tìm thấy.</li>
+</ol>
+<p><strong>Ví dụ:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mainTitle</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#main-title&#39;</span>); <span style="color:#75715e">// ID
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">buttons</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelectorAll</span>(<span style="color:#e6db74">&#39;.btn-primary&#39;</span>); <span style="color:#75715e">// Class
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">listItems</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelectorAll</span>(<span style="color:#e6db74">&#39;ul &gt; li&#39;</span>); <span style="color:#75715e">// CSS Selector phức tạp
+</span></span></span></code></pre></div><blockquote>
+<p><strong>Lưu ý:</strong> <code>querySelectorAll</code> trả về NodeList, không phải Array. Để dùng <code>map</code>, <code>filter</code>, hãy convert nó: <code>Array.from(buttons)</code>.</p>
+</blockquote>
+<h2 id="3-thao-tác-nội-dung-và-style">3. Thao tác nội dung và Style</h2>
+<h3 id="sửa-nội-dung">Sửa nội dung</h3>
+<ul>
+<li><code>textContent</code>: An toàn, nhanh (khuyên dùng).</li>
+<li><code>innerHTML</code>: Mạnh nhưng nguy hiểm (dễ dính lỗi XSS nếu render user input).</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">box</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.box&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">box</span>.<span style="color:#a6e22e">textContent</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Hello World&#39;</span>; 
+</span></span></code></pre></div><h3 id="sửa-style">Sửa Style</h3>
+<p>Đừng sửa từng dòng style bằng JS (<code>element.style.color = 'red'</code>). Hãy thêm/bớt <strong>Class</strong> để tận dụng CSS.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Bad practice
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">box</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">backgroundColor</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;red&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">box</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">padding</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;20px&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Good practice
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">box</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;active&#39;</span>); <span style="color:#75715e">// CSS: .active { background: red; padding: 20px; }
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">box</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">toggle</span>(<span style="color:#e6db74">&#39;hidden&#39;</span>);
+</span></span></code></pre></div><h2 id="4-xử-lý-sự-kiện-event-handling">4. Xử lý sự kiện (Event Handling)</h2>
+<p>Sử dụng <code>addEventListener</code> là chuẩn mực vàng.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">btn</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#submit-btn&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">btn</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, (<span style="color:#a6e22e">event</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">preventDefault</span>(); <span style="color:#75715e">// Ngăn form reload
+</span></span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Button clicked!&#39;</span>, <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">target</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h3 id="kỹ-thuật-event-delegation-nâng-cao">Kỹ thuật Event Delegation (Nâng cao)</h3>
+<p>Giả sử bạn có 1 danh sách <code>&lt;ul&gt;</code> với 1000 thẻ <code>&lt;li&gt;</code>. Đừng gán 1000 event listener cho từng thẻ <code>&lt;li&gt;</code>. Hãy gán 1 cái cho thẻ cha <code>&lt;ul&gt;</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#my-list&#39;</span>).<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, (<span style="color:#a6e22e">e</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Kiểm tra xem user có click vào thẻ li không
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">matches</span>(<span style="color:#e6db74">&#39;li&#39;</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Clicked text:&#39;</span>, <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">textContent</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p><strong>Lợi ích:</strong> Tiết kiệm bộ nhớ cực lớn và code gọn hơn.</p>
+<h2 id="5-tạo-và-thêm-phần-tử-mới">5. Tạo và thêm phần tử mới</h2>
+<p>Cách tạo DOM element &ldquo;sạch&rdquo; và an toàn:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// 1. Tạo phần tử
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newDiv</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;div&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 2. Gán thuộc tính
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">newDiv</span>.<span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;notification&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">newDiv</span>.<span style="color:#a6e22e">textContent</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Lưu thành công!&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 3. Gắn vào DOM
+</span></span></span><span style="display:flex;"><span>document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">newDiv</span>);
+</span></span></code></pre></div><h2 id="kết-luận">Kết luận</h2>
+<p>Frameworks như React sinh ra để bạn đỡ khổ sở với DOM API. Tuy nhiên, hiểu rõ DOM giúp bạn:</p>
+<ol>
+<li>Debug tốt hơn khi Framework gặp lỗi.</li>
+<li>Tối ưu hiệu năng khi biết cái gì đang xảy ra dưới nắp capo.</li>
+<li>Viết các thư viện nhỏ hoặc landing page nhẹ mà không cần bundle React 200KB.</li>
+</ol>
+
+    </div>
+
+    <footer class="mt-12 text-muted text-sm">
+      <hr class="border-neutral-700 mb-4" />
+      <div>Đã đọc: 3 phút • Thẻ: JavaScript</div>
+    </footer>
+  </article>
+</main>
+
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://alex11177.github.io/blog_network_cn/">Blog Lập Trình Mạng</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a><script>
+    const currentUrl = window.location.pathname;
+    document.querySelectorAll('.menu li a').forEach(link => {
+        if (link.getAttribute('href') === currentUrl || (link.getAttribute('href') !== '/' && currentUrl.startsWith(link.getAttribute('href')))) {
+            link.closest('li').classList.add('active');
+        }
+    });
+</script>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    const _themeToggle = document.getElementById("theme-toggle");
+    if (_themeToggle) {
+        _themeToggle.addEventListener("click", () => {
+            const html = document.querySelector("html");
+            if (html.dataset.theme === "dark") {
+                html.dataset.theme = 'light';
+                localStorage.setItem("pref-theme", 'light');
+            } else {
+                html.dataset.theme = 'dark';
+                localStorage.setItem("pref-theme", 'dark');
+            }
+        });
+    }
+
+</script>
+</body>
+
+</html>
