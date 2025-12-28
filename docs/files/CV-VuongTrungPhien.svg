@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1850" viewBox="0 0 800 1850">
+  <defs>
+    <style>
+      .bg { fill: #f3f4f6; }
+      .header { fill: #24303b; }
+      .name { fill: #ffffff; font-family: Arial, Helvetica, sans-serif; font-size: 34px; font-weight:700; }
+      .title { fill: #cbd5e1; font-family: Arial, Helvetica, sans-serif; font-size: 16px; }
+      .label { fill: #0f1724; font-family: Arial, Helvetica, sans-serif; font-size: 14px; }
+      .section { fill: #111827; font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight:700; }
+      .small { fill: #475569; font-family: Arial, Helvetica, sans-serif; font-size: 12px; }
+    </style>
+    <clipPath id="avatarClip">
+      <circle cx="110" cy="162" r="70" />
+    </clipPath>
+  </defs>
+  <rect class="bg" width="800" height="1850" rx="12"/>
+  <rect x="32" y="32" width="736" height="260" rx="10" class="header"/>
+
+  <image x="40" y="92" width="140" height="140" href="/blog_network_cn/images/cv-photo.jpg" clip-path="url(#avatarClip)" preserveAspectRatio="xMidYMid slice"/>
+  <circle cx="110" cy="162" r="70" fill="none" stroke="#e2e8f0" stroke-width="3"/>
+
+  <text x="210" y="118" class="name">Vuong Trung Phien</text>
+  <text x="210" y="148" class="title">Backend Developer and Network Programming</text>
+  <text x="210" y="176" class="title">Email: nq2019.vuongtrungphien220804@gmail.com</text>
+  <text x="210" y="200" class="title">Phone: 0907955098</text>
+  <text x="210" y="224" class="title">Location: Ho Chi Minh City, Vietnam</text>
+  <text x="210" y="248" class="title">GitHub: github.com/vuongtrungphien</text>
+
+  <rect x="32" y="320" width="736" height="1450" rx="10" fill="#ffffff"/>
+  <line x1="392" y1="360" x2="392" y2="1710" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="56" y="368" class="section">SUMMARY</text>
+  <text x="56" y="394" class="label">Backend-focused developer working on distributed systems</text>
+  <text x="56" y="414" class="label">and network programming with a clean, reliable mindset.</text>
+  <text x="56" y="434" class="label">Experienced with Java, Spring Boot, REST APIs, MySQL, Redis.</text>
+
+  <text x="56" y="474" class="section">EXPERIENCE</text>
+  <text x="56" y="500" class="label" style="font-weight:700;">Backend Developer - Example Co.</text>
+  <text x="56" y="520" class="small">2024 - Present</text>
+  <text x="56" y="542" class="label">- Build REST APIs and standardize response formats</text>
+  <text x="56" y="562" class="label">- Optimize SQL, caching, and observability</text>
+  <text x="56" y="582" class="label">- Deploy with Docker and CI for staging</text>
+
+  <text x="56" y="612" class="label" style="font-weight:700;">Network Intern - HUTECH Lab</text>
+  <text x="56" y="632" class="small">2023 - 2024</text>
+  <text x="56" y="654" class="label">- Build TCP and UDP tools plus packet analysis</text>
+  <text x="56" y="674" class="label">- Automate test runs and reporting</text>
+
+  <text x="56" y="704" class="label" style="font-weight:700;">Freelance Developer</text>
+  <text x="56" y="724" class="small">2022 - 2023</text>
+  <text x="56" y="746" class="label">- Small services, API integrations, and bug fixes</text>
+  <text x="56" y="766" class="label">- Maintenance work and performance tuning</text>
+
+  <text x="56" y="806" class="section">PROJECTS</text>
+  <text x="56" y="832" class="label" style="font-weight:700;">Blog Network CN</text>
+  <text x="56" y="852" class="label">- Hugo site, content flow, and UI improvements</text>
+  <text x="56" y="872" class="label">- SEO, backups, and monitoring setup</text>
+
+  <text x="56" y="902" class="label" style="font-weight:700;">Real-time Chat Service</text>
+  <text x="56" y="922" class="label">- WebSocket gateway with Redis pub sub</text>
+  <text x="56" y="942" class="label">- Auth, rate limiting, and error tracking</text>
+
+  <text x="56" y="972" class="label" style="font-weight:700;">Distributed File Sync</text>
+  <text x="56" y="992" class="label">- gRPC, chunked upload, and resumable download</text>
+  <text x="56" y="1012" class="label">- Integrity checks and retry logic</text>
+
+  <text x="56" y="1052" class="section">EDUCATION</text>
+  <text x="56" y="1078" class="label" style="font-weight:700;">HUTECH University</text>
+  <text x="56" y="1098" class="label">Information Technology, 2022 - 2026</text>
+  <text x="56" y="1118" class="label">Key courses: Networks, OS, Databases, OOP</text>
+  <text x="56" y="1138" class="label">GPA: 3.2 / 4 (planned)</text>
+
+  <text x="56" y="1178" class="section">CAREER GOALS</text>
+  <text x="56" y="1204" class="label">- 1 to 2 years: deepen backend and distributed systems</text>
+  <text x="56" y="1224" class="label">- 3 to 5 years: become a software architect</text>
+  <text x="56" y="1244" class="label">- Focus on performance, security, and reliability</text>
+
+  <text x="416" y="474" class="section">SKILLS</text>
+  <text x="416" y="500" class="label">Languages: Java, JavaScript, Python, SQL</text>
+  <text x="416" y="520" class="label">Backend: Spring Boot, Node.js, Express</text>
+  <text x="416" y="540" class="label">Databases: MySQL, PostgreSQL, Redis</text>
+  <text x="416" y="560" class="label">DevOps: Docker, GitHub Actions, Linux</text>
+  <text x="416" y="580" class="label">Networking: TCP, UDP, HTTP, TLS, DNS</text>
+
+  <text x="416" y="620" class="section">CERTIFICATES</text>
+  <text x="416" y="646" class="label">- JavaScript Essentials 1 (2025)</text>
+  <text x="416" y="666" class="label">- JavaScript Essentials 2 (2025)</text>
+  <text x="416" y="686" class="label">- Networking Basics (2025)</text>
+  <text x="416" y="706" class="label">- Linux Essentials (2024)</text>
+  <text x="416" y="726" class="label">- Cloud Fundamentals (2024)</text>
+
+  <text x="416" y="766" class="section">ACTIVITIES</text>
+  <text x="416" y="792" class="label">- Technical blogging and study notes</text>
+  <text x="416" y="812" class="label">- Open-source contributions and fixes</text>
+  <text x="416" y="832" class="label">- Hackathons and small side projects</text>
+  <text x="416" y="852" class="label">- Peer mentoring in networking basics</text>
+
+  <text x="416" y="892" class="section">AWARDS</text>
+  <text x="416" y="918" class="label">- Top 3 in Networking class (2025)</text>
+  <text x="416" y="938" class="label">- Scholarship award (2024)</text>
+  <text x="416" y="958" class="label">- Best project demo (2023)</text>
+
+  <text x="416" y="998" class="section">TOOLS</text>
+  <text x="416" y="1024" class="label">- Git, Postman, Wireshark, VS Code</text>
+  <text x="416" y="1044" class="label">- Jira, Notion, Figma for docs</text>
+  <text x="416" y="1064" class="label">- Swagger, OpenAPI, Sentry, Grafana</text>
+
+  <text x="416" y="1104" class="section">LANGUAGES</text>
+  <text x="416" y="1130" class="label">- Vietnamese: native</text>
+  <text x="416" y="1150" class="label">- English: intermediate</text>
+
+  <text x="416" y="1190" class="section">INTERESTS</text>
+  <text x="416" y="1216" class="label">- Distributed systems and performance</text>
+  <text x="416" y="1236" class="label">- Network security and traffic analysis</text>
+  <text x="416" y="1256" class="label">- Clean Architecture and system design</text>
+
+  <text x="600" y="1820" class="small">Last update: 2025-12-28</text>
+</svg>
