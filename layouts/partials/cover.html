@@ -20,8 +20,11 @@
         {{- $processableFormats = $processableFormats | append "webp" -}}
     {{- end -}}
 
-    {{- $imgdl := printf "https://alex11177.github.io/blog_network_cn/%s" .Params.cover.image }}
-    {{- /* Force use of hardcoded URL */ -}}
+    {{- $imgdl := .Params.cover.image }}
+    {{- if not (urls.Parse $imgdl).IsAbs }}
+        {{- $imgdl = $imgdl | relURL }}
+    {{- end }}
+
 
     {{- if $addLink }}
         <a href="{{ $imgdl }}" target="_blank" rel="noopener noreferrer">
@@ -33,11 +36,11 @@
             <img loading="{{$loading}}"
                 srcset='{{- range $size := $sizes -}}
                             {{- if (ge $cover.Width $size) }}
-                                {{- printf "%s %s" (($cover.Resize (printf "%sx" $size)).Permalink) (printf "%sw," $size) }}
+                                {{- printf "%s %s" (($cover.Resize (printf "%sx" $size)).RelPermalink) (printf "%sw," $size) }}
                             {{- end }}
                         {{- end }}
-                        {{- printf "%s %dw" ($cover.Permalink) ($cover.Width) }}'
-                src="{{ $cover.Permalink }}"
+                        {{- printf "%s %dw" ($cover.RelPermalink) ($cover.Width) }}'
+                src="{{ $cover.RelPermalink }}"
                 sizes="(min-width: 768px) 720px, 100vw"
                 width="{{ $cover.Width }}" height="{{ $cover.Height }}"
                 alt="{{ $alt }}">

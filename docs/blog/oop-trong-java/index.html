@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto" data-theme="auto">
 
-<head><script src="/blog_network_cn/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog_network_cn/livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Lập trình hướng đối tượng (OOP) trong Java: 4 trụ cột và Best Practices | Blog Lập Trình Mạng</title>
 <meta name="keywords" content="Java, OOP, Design Patterns">
 <meta name="description" content="OOP không chỉ là lý thuyết sgk. Bài viết này đi sâu vào 4 tính chất (Encapsulation, Inheritance, Polymorphism, Abstraction) kèm theo các quy tắc thiết kế (SOLID) thực tế trong dự án Java lớn.">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/blog_network_cn/blog/oop-trong-java/">
+<link rel="canonical" href="https://alex11177.github.io/blog_network_cn/blog/oop-trong-java/">
 <link crossorigin="anonymous" href="/blog_network_cn/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/blog_network_cn/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/blog_network_cn/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/blog_network_cn/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/blog_network_cn/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/blog_network_cn/safari-pinned-tab.svg">
+<link rel="icon" href="https://alex11177.github.io/blog_network_cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://alex11177.github.io/blog_network_cn/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://alex11177.github.io/blog_network_cn/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://alex11177.github.io/blog_network_cn/apple-touch-icon.png">
+<link rel="mask-icon" href="https://alex11177.github.io/blog_network_cn/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/blog_network_cn/blog/oop-trong-java/">
+<link rel="alternate" hreflang="en" href="https://alex11177.github.io/blog_network_cn/blog/oop-trong-java/">
 <noscript>
     <style>
         #theme-toggle,
@@ -86,7 +86,74 @@
 
 <link rel="stylesheet" href="/blog_network_cn/css/custom.css">
 <link rel="stylesheet" href="/blog_network_cn/css/card-overrides.css">
+<meta property="og:url" content="https://alex11177.github.io/blog_network_cn/blog/oop-trong-java/">
+  <meta property="og:site_name" content="Blog Lập Trình Mạng">
+  <meta property="og:title" content="Lập trình hướng đối tượng (OOP) trong Java: 4 trụ cột và Best Practices">
+  <meta property="og:description" content="OOP không chỉ là lý thuyết sgk. Bài viết này đi sâu vào 4 tính chất (Encapsulation, Inheritance, Polymorphism, Abstraction) kèm theo các quy tắc thiết kế (SOLID) thực tế trong dự án Java lớn.">
+  <meta property="og:locale" content="vi-vn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-12-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-23T00:00:00+00:00">
+    <meta property="article:tag" content="Java">
+    <meta property="article:tag" content="OOP">
+    <meta property="article:tag" content="Design Patterns">
+    <meta property="og:image" content="https://alex11177.github.io/blog_network_cn/images/posts/oop-best-practices.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alex11177.github.io/blog_network_cn/images/posts/oop-best-practices.webp">
+<meta name="twitter:title" content="Lập trình hướng đối tượng (OOP) trong Java: 4 trụ cột và Best Practices">
+<meta name="twitter:description" content="OOP không chỉ là lý thuyết sgk. Bài viết này đi sâu vào 4 tính chất (Encapsulation, Inheritance, Polymorphism, Abstraction) kèm theo các quy tắc thiết kế (SOLID) thực tế trong dự án Java lớn.">
 
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs",
+      "item": "https://alex11177.github.io/blog_network_cn/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Lập trình hướng đối tượng (OOP) trong Java: 4 trụ cột và Best Practices",
+      "item": "https://alex11177.github.io/blog_network_cn/blog/oop-trong-java/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Lập trình hướng đối tượng (OOP) trong Java: 4 trụ cột và Best Practices",
+  "name": "Lập trình hướng đối tượng (OOP) trong Java: 4 trụ cột và Best Practices",
+  "description": "OOP không chỉ là lý thuyết sgk. Bài viết này đi sâu vào 4 tính chất (Encapsulation, Inheritance, Polymorphism, Abstraction) kèm theo các quy tắc thiết kế (SOLID) thực tế trong dự án Java lớn.",
+  "keywords": [
+    "Java", "OOP", "Design Patterns"
+  ],
+  "articleBody": "Mở đầu: Tại sao OOP lại quan trọng? Object-Oriented Programming (OOP) là mô hình lập trình dựa trên khái niệm “Object” (đối tượng) chứa dữ liệu (attributes) và mã (methods). Java là ngôn ngữ OOP thuần túy (gần như), nên việc hiểu sâu OOP là điều kiện tiên quyết để viết code Java tốt (Clean Code).\n1. Encapsulation (Tính đóng gói) Định nghĩa: Giấu thông tin và chi tiết cài đặt nội bộ, chỉ cung cấp interface để tương tác bên ngoài.\nTại sao cần? Bảo vệ dữ liệu khỏi sự truy cập tùy tiện.\npublic class BankAccount { private double balance; // Dữ liệu được giấu đi (private) public void deposit(double amount) { if (amount \u003e 0) { balance += amount; // Chỉ thay đổi qua method kiểm soát } } public double getBalance() { return balance; // Getter an toàn } } Best Practice: Luôn để thuộc tính là private. Chỉ dùng public cho hằng số (public static final).\n2. Inheritance (Tính kế thừa) Định nghĩa: Cho phép một class con (subclass) kế thừa các thuộc tính và phương thức của class cha (superclass).\nCú pháp: extends\n// Class cha public class Vehicle { protected String brand = \"Ford\"; public void honk() { System.out.println(\"Tuut, tuut!\"); } } // Class con public class Car extends Vehicle { public String modelName = \"Mustang\"; } Cảnh báo: Hãy cẩn thận với kế thừa sâu (Deep Inheritance Hierarchy). Về sau, người ta ưa chuộng “Composition over Inheritance” (Sử dụng thành phần thay vì kế thừa) để giảm sự phụ thuộc chặt chẽ giữa các lớp.\n3. Polymorphism (Tính đa hình) Định nghĩa: Một hành động có thể được thực hiện theo nhiều cách khác nhau.\nCó 2 loại đa hình:\nCompile-time (Overloading): Cùng tên hàm nhưng khác tham số. Runtime (Overriding): Class con định nghĩa lại method của class cha. public class Animal { public void animalSound() { System.out.println(\"The animal makes a sound\"); } } public class Pig extends Animal { @Override public void animalSound() { // Runtime Polymorphism System.out.println(\"The pig says: wee wee\"); } } 4. Abstraction (Tính trừu tượng) Định nghĩa: Ẩn các chi tiết cài đặt phức tạp và chỉ hiển thị các chức năng thiết yếu.\nTrong Java, chúng ta dùng abstract class và interface.\nInterface vs Abstract Class (Phỏng vấn hay hỏi) Interface: Dùng để định nghĩa hành vi (Can-Do). Một class có thể implement nhiều interface. (Ví dụ: Flyable, Runnable). Abstract Class: Dùng để định nghĩa bản chất (Is-A). Một class chỉ có thể extends một abstract class. (Ví dụ: Animal, Person). Kết luận: Từ OOP đến SOLID Hiểu 4 tính chất trên là chưa đủ. Để trở thành Senior, bạn cần áp dụng nguyên lý SOLID:\nSingle Responsibility Principle Open/Closed Principle Liskov Substitution Principle Interface Segregation Principle Dependency Inversion Principle Chúng ta sẽ bàn kỹ về SOLID trong một bài viết chuyên sâu khác. Nhưng hãy nhớ: Code Java tốt là code dễ đọc, dễ bảo trì và mở rộng được.\n",
+  "wordCount" : "496",
+  "inLanguage": "en",
+  "image":"https://alex11177.github.io/blog_network_cn/images/posts/oop-best-practices.webp","datePublished": "2025-12-23T00:00:00Z",
+  "dateModified": "2025-12-23T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://alex11177.github.io/blog_network_cn/blog/oop-trong-java/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Blog Lập Trình Mạng",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://alex11177.github.io/blog_network_cn/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 <body id="top">
     
@@ -124,7 +191,7 @@
       <h1 class="text-3xl font-extrabold text-white mb-2">Lập trình hướng đối tượng (OOP) trong Java: 4 trụ cột và Best Practices</h1>
       <div class="text-muted text-sm">23 Dec 2025 • Java, OOP, Design Patterns</div>
       
-      <img src="http://localhost:1313/blog_network_cn/images/posts/oop-best-practices.webp" alt="Lập trình hướng đối tượng (OOP) trong Java: 4 trụ cột và Best Practices" class="mt-6 w-full h-64 object-cover rounded-lg shadow-lg">
+      <img src="/blog_network_cn/images/posts/oop-best-practices.webp" alt="Lập trình hướng đối tượng (OOP) trong Java: 4 trụ cột và Best Practices" class="mt-6 w-full h-64 object-cover rounded-lg shadow-lg">
       
     </header>
 
@@ -218,7 +285,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/blog_network_cn/">Blog Lập Trình Mạng</a></span> · 
+        <span>&copy; 2025 <a href="https://alex11177.github.io/blog_network_cn/">Blog Lập Trình Mạng</a></span> · 
 
     <span>
         Powered by

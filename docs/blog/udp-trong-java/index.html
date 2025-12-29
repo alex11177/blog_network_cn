@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto" data-theme="auto">
 
-<head><script src="/blog_network_cn/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog_network_cn/livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Lập trình UDP trong Java: Tốc độ trên hết (Fire and Forget) | Blog Lập Trình Mạng</title>
 <meta name="keywords" content="Java, UDP, Network">
 <meta name="description" content="Khác với TCP, UDP là giao thức &lsquo;gửi rồi quên&rsquo;. Tại sao lại dùng một giao thức không tin cậy? Cùng tìm hiểu cách implement UDP Client/Server trong Java.">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/blog_network_cn/blog/udp-trong-java/">
+<link rel="canonical" href="https://alex11177.github.io/blog_network_cn/blog/udp-trong-java/">
 <link crossorigin="anonymous" href="/blog_network_cn/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/blog_network_cn/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/blog_network_cn/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/blog_network_cn/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/blog_network_cn/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/blog_network_cn/safari-pinned-tab.svg">
+<link rel="icon" href="https://alex11177.github.io/blog_network_cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://alex11177.github.io/blog_network_cn/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://alex11177.github.io/blog_network_cn/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://alex11177.github.io/blog_network_cn/apple-touch-icon.png">
+<link rel="mask-icon" href="https://alex11177.github.io/blog_network_cn/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/blog_network_cn/blog/udp-trong-java/">
+<link rel="alternate" hreflang="en" href="https://alex11177.github.io/blog_network_cn/blog/udp-trong-java/">
 <noscript>
     <style>
         #theme-toggle,
@@ -86,7 +86,74 @@
 
 <link rel="stylesheet" href="/blog_network_cn/css/custom.css">
 <link rel="stylesheet" href="/blog_network_cn/css/card-overrides.css">
+<meta property="og:url" content="https://alex11177.github.io/blog_network_cn/blog/udp-trong-java/">
+  <meta property="og:site_name" content="Blog Lập Trình Mạng">
+  <meta property="og:title" content="Lập trình UDP trong Java: Tốc độ trên hết (Fire and Forget)">
+  <meta property="og:description" content="Khác với TCP, UDP là giao thức ‘gửi rồi quên’. Tại sao lại dùng một giao thức không tin cậy? Cùng tìm hiểu cách implement UDP Client/Server trong Java.">
+  <meta property="og:locale" content="vi-vn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-12-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-23T00:00:00+00:00">
+    <meta property="article:tag" content="Java">
+    <meta property="article:tag" content="UDP">
+    <meta property="article:tag" content="Network">
+    <meta property="og:image" content="https://alex11177.github.io/blog_network_cn/images/posts/java-udp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alex11177.github.io/blog_network_cn/images/posts/java-udp.png">
+<meta name="twitter:title" content="Lập trình UDP trong Java: Tốc độ trên hết (Fire and Forget)">
+<meta name="twitter:description" content="Khác với TCP, UDP là giao thức &lsquo;gửi rồi quên&rsquo;. Tại sao lại dùng một giao thức không tin cậy? Cùng tìm hiểu cách implement UDP Client/Server trong Java.">
 
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs",
+      "item": "https://alex11177.github.io/blog_network_cn/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Lập trình UDP trong Java: Tốc độ trên hết (Fire and Forget)",
+      "item": "https://alex11177.github.io/blog_network_cn/blog/udp-trong-java/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Lập trình UDP trong Java: Tốc độ trên hết (Fire and Forget)",
+  "name": "Lập trình UDP trong Java: Tốc độ trên hết (Fire and Forget)",
+  "description": "Khác với TCP, UDP là giao thức \u0026lsquo;gửi rồi quên\u0026rsquo;. Tại sao lại dùng một giao thức không tin cậy? Cùng tìm hiểu cách implement UDP Client/Server trong Java.",
+  "keywords": [
+    "Java", "UDP", "Network"
+  ],
+  "articleBody": "UDP là gì? (User Datagram Protocol) UDP là giao thức không kết nối (connectionless). Nó không quan tâm người nhận có sẵn sàng không, cũng không check xem gói tin có đến nơi hay không.\nƯu điểm: Tốc độ cực nhanh, overhead (chi phí header) thấp. Nhược điểm: Có thể mất gói tin, sai thứ tự. Khi nào dùng UDP?\nVideo Streaming (Zoom, YouTube Live). Mất vài frame hình thì video chỉ hơi nháy, chứ không nên dừng lại để chờ tải lại. Game FPS (CS:GO, Valorant). Vị trí địch cần cập nhật tức thời. DNS Lookup. Code ví dụ UDP trong Java Trong UDP, chúng ta không dùng Socket mà dùng DatagramSocket và đóng gói dữ liệu vào DatagramPacket.\nUDP Server (Receiver) import java.net.*; public class UdpServer { public static void main(String[] args) throws Exception { DatagramSocket socket = new DatagramSocket(9876); byte[] receiveData = new byte[1024]; System.out.println(\"UDP Server đang chờ...\"); while (true) { // Tạo packet rỗng để hứng dữ liệu DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length); // Chặn chờ nhận tin socket.receive(receivePacket); String message = new String(receivePacket.getData(), 0, receivePacket.getLength()); System.out.println(\"Đã nhận: \" + message); } } } UDP Client (Sender) import java.net.*; public class UdpClient { public static void main(String[] args) throws Exception { DatagramSocket socket = new DatagramSocket(); String message = \"Hello UDP World!\"; byte[] sendData = message.getBytes(); InetAddress ipAddress = InetAddress.getByName(\"localhost\"); // Đóng gói dữ liệu kèm địa chỉ đích DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, ipAddress, 9876); // Bắn đi (Fire) socket.send(sendPacket); System.out.println(\"Đã gửi tin!\"); socket.close(); } } Sự khác biệt cốt lõi với TCP code Không có accept(): Server không cần bắt tay. Nó chỉ mở cổng và hứng mọi thứ bay vào. Packet-based: Dữ liệu phải được đóng gói thành từng DatagramPacket rời rạc, không phải là một dòng chảy (Stream) liên tục như TCP. Kích thước: Một gói UDP an toàn thường \u003c 64KB (thực tế tốt nhất là dưới MTU ~1400 bytes) để tránh bị phân mảnh (fragmentation). ",
+  "wordCount" : "327",
+  "inLanguage": "en",
+  "image":"https://alex11177.github.io/blog_network_cn/images/posts/java-udp.png","datePublished": "2025-12-23T00:00:00Z",
+  "dateModified": "2025-12-23T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://alex11177.github.io/blog_network_cn/blog/udp-trong-java/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Blog Lập Trình Mạng",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://alex11177.github.io/blog_network_cn/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 <body id="top">
     
@@ -124,7 +191,7 @@
       <h1 class="text-3xl font-extrabold text-white mb-2">Lập trình UDP trong Java: Tốc độ trên hết (Fire and Forget)</h1>
       <div class="text-muted text-sm">23 Dec 2025 • Java, UDP, Network</div>
       
-      <img src="http://localhost:1313/blog_network_cn/images/posts/java-udp.png" alt="Lập trình UDP trong Java: Tốc độ trên hết (Fire and Forget)" class="mt-6 w-full h-64 object-cover rounded-lg shadow-lg">
+      <img src="/blog_network_cn/images/posts/java-udp.png" alt="Lập trình UDP trong Java: Tốc độ trên hết (Fire and Forget)" class="mt-6 w-full h-64 object-cover rounded-lg shadow-lg">
       
     </header>
 
@@ -206,7 +273,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/blog_network_cn/">Blog Lập Trình Mạng</a></span> · 
+        <span>&copy; 2025 <a href="https://alex11177.github.io/blog_network_cn/">Blog Lập Trình Mạng</a></span> · 
 
     <span>
         Powered by
